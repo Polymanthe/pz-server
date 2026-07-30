@@ -1,0 +1,56 @@
+services:
+  projectzomboid:
+    build:
+      context: .
+      args:
+        PZ_BASE_IMAGE: "${PZ_IMAGE:-docker.io/indifferentbroccoli/projectzomboid-server-docker:v1.1.8@sha256:950d7b4ff19a04d3f8a1a35af383526ad95c88a9a4d795760b3a9b00ee80b1a0}"
+    image: "${PZ_SERVER_IMAGE:-pz-server:local}"
+    platform: linux/amd64
+    restart: unless-stopped
+    stop_grace_period: 60s
+    env_file:
+      - ./mods/resolved.env
+    environment:
+      PUID: "${PUID:-1000}"
+      PGID: "${PGID:-1000}"
+      ADMIN_USERNAME: "${ADMIN_USERNAME:-admin}"
+      ADMIN_PASSWORD: "${ADMIN_PASSWORD:?Run task init or configure ADMIN_PASSWORD}"
+      RCON_PASSWORD: "${RCON_PASSWORD:?Run task init or configure RCON_PASSWORD}"
+      RCON_PORT: "${RCON_PORT:-27015}"
+      SERVER_NAME: "${SERVER_NAME:-pzserver}"
+      SERVER_BRANCH: "${SERVER_BRANCH:-}"
+      DEFAULT_PORT: "${DEFAULT_PORT:-16261}"
+      UDP_PORT: "${UDP_PORT:-16262}"
+      MAX_PLAYERS: "${MAX_PLAYERS:-8}"
+      MEMORY_XMX_GB: "${MEMORY_XMX_GB:-4}"
+      MEMORY_XMS_GB: "${MEMORY_XMS_GB:-}"
+      VM_ARGS: "${VM_ARGS:-}"
+      UPDATE_ON_START: "${UPDATE_ON_START:-false}"
+      STEAM_VAC: "${STEAM_VAC:-true}"
+      USE_STEAM: "${USE_STEAM:-true}"
+    ports:
+      - "${DEFAULT_PORT:-16261}:${DEFAULT_PORT:-16261}/udp"
+      - "${UDP_PORT:-16262}:${UDP_PORT:-16262}/udp"
+    volumes:
+      - server-files:/project-zomboid
+      - server-data:/project-zomboid-config
+    healthcheck:
+      test: ["CMD-SHELL", "rcon-cli -c /home/steam/server/rcon.yml players >/dev/null 2>&1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 10m
+    deploy:
+      resources:
+        limits:
+          cpus: "${CONTAINER_CPU_LIMIT:-4.0}"
+          memory: "${CONTAINER_MEMORY_LIMIT:-6G}"
+    logging:
+      driver: json-file
+      options:
+        max-size: "${LOG_MAX_SIZE:-10m}"
+        max-file: "${LOG_MAX_FILES:-5}"
+
+volumes:
+  server-files:
+  server-data:

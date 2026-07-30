@@ -1,0 +1,8 @@
+# "all" activates every installed Workshop item discovered by task mods:discover.
+# Change to "explicit" and populate include to curate a smaller pack.
+[selection]
+mode = "all"
+include = []
+# Neat Building ships a legacy .tiles file rejected by Build 42.20.
+# Its addon depends on Neat Building and must remain disabled with it.
+exclude = ["3536052310", "3540503606"]

@@ -1,0 +1,255 @@
+version: "3"
+
+tasks:
+  default:
+    desc: List available tasks
+    cmds:
+      - task --list
+
+  init:
+    desc: Create a local environment file with generated passwords
+    silent: true
+    preconditions:
+      - sh: command -v openssl >/dev/null 2>&1
+        msg: OpenSSL is required to generate local passwords
+      - sh: test -f .env.example
+        msg: .env.example is missing
+    cmds:
+      - |
+        if [ -e .env ]; then
+          printf '%s\n' '.env already exists; leaving it unchanged'
+          exit 0
+        fi
+
+        admin_password="$(openssl rand -hex 24)"
+        rcon_password="$(openssl rand -hex 24)"
+
+        temp_env=.env.tmp
+        touch "$temp_env"
+        chmod 600 "$temp_env"
+        while IFS= read -r line || [ -n "$line" ]; do
+          case "$line" in
+            ADMIN_PASSWORD=CHANGEME_ADMIN)
+              printf 'ADMIN_PASSWORD=%s\n' "$admin_password"
+              ;;
+            RCON_PASSWORD=CHANGEME_RCON)
+              printf 'RCON_PASSWORD=%s\n' "$rcon_password"
+              ;;
+            *)
+              printf '%s\n' "$line"
+              ;;
+          esac
+        done < .env.example > "$temp_env"
+        mv "$temp_env" .env
+
+        printf '%s\n' 'Created .env with generated admin and RCON passwords'
+
+  doctor:
+    desc: Check host and Docker compatibility
+    preconditions:
+      - sh: command -v docker >/dev/null 2>&1
+        msg: Docker is required and must be installed separately from mise
+      - sh: test -f .env
+        msg: Run task init or provide .env first
+    cmds:
+      - docker info >/dev/null
+      - docker compose version
+      - uname -sm
+      - |
+        case "$(uname -s)/$(uname -m)" in
+          Darwin/arm64)
+            printf '%s\n' 'Apple Silicon host detected: the server will run through linux/amd64 emulation'
+            settings="$HOME/Library/Group Containers/group.com.docker/settings-store.json"
+            if [ -f "$settings" ] && { ! grep -Eq '"UseVirtualizationFramework"[[:space:]]*:[[:space:]]*true' "$settings" || ! grep -Eq '"UseVirtualizationFrameworkRosetta"[[:space:]]*:[[:space:]]*true' "$settings"; }; then
+              printf '%s\n' 'Docker Desktop Rosetta emulation is disabled.'
+              printf '%s\n' 'Select Apple Virtualization framework and enable Rosetta in Docker Desktop > Settings > General, then apply and restart.'
+              exit 1
+            fi
+            ;;
+          */arm64|*/aarch64)
+            printf '%s\n' 'ARM host detected: linux/amd64 emulation is required and may not be reliable without Rosetta'
+            ;;
+        esac
+      - docker compose config --quiet
+
+  config:
+    desc: Validate the resolved Compose configuration
+    preconditions:
+      - sh: test -f .env
+        msg: Run task init or provide .env first
+    cmds:
+      - docker compose config --quiet
+
+  mods:discover:
+    desc: Discover installed Project Zomboid Workshop items from local Steam
+    cmds:
+      - mise exec -- python scripts/discover_mods.py
+
+  mods:list:
+    desc: Discover and list Workshop items, mod IDs, dependencies, and Steam URLs
+    cmds:
+      - mise exec -- python scripts/discover_mods.py --list
+
+  mods:generate:
+    desc: Resolve the selected pack into Project Zomboid server settings
+    preconditions:
+      - sh: test -f mods/catalog.lock.json
+        msg: Run task mods:discover first
+      - sh: test -f mods/enabled.toml
+        msg: mods/enabled.toml is missing
+    cmds:
+      - mise exec -- python scripts/resolve_mods.py
+
+  mods:sync:
+    desc: Refresh the local Steam inventory and regenerate the active pack
+    cmds:
+      - task: mods:discover
+      - task: mods:generate
+
+  mods:plan:
+    desc: Show the resolved Workshop items, mod IDs, and Steam URLs
+    preconditions:
+      - sh: test -f mods/catalog.lock.json
+        msg: Run task mods:discover first
+    cmds:
+      - mise exec -- python scripts/resolve_mods.py --show
+
+  mods:apply:
+    desc: "Build and apply the configured mod pack (requires CONFIRM=mods)"
+    vars:
+      CONFIRM: '{{default "" .CONFIRM}}'
+      WAIT_TIMEOUT: '{{default "1800" .WAIT_TIMEOUT}}'
+    preconditions:
+      - sh: test -f .env
+        msg: Run task init or provide .env first
+      - sh: test "{{.CONFIRM}}" = mods
+        msg: "This changes the active mod pack. Run task mods:apply CONFIRM=mods to continue"
+    cmds:
+      - task: mods:generate
+      - docker compose config --quiet
+      - docker compose up --build --detach --force-recreate --wait --wait-timeout {{.WAIT_TIMEOUT}}
+
+  mods:verify:
+    desc: Verify the active server configuration and RCON availability
+    preconditions:
+      - sh: test -f .env
+        msg: Run task init or provide .env first
+    cmds:
+      - |
+        docker compose exec -T projectzomboid bash -lc '
+          set -eu
+          config="/project-zomboid-config/Server/${SERVER_NAME}.ini"
+          for key in MODS WORKSHOP_ITEMS; do
+            case "$key" in
+              MODS)
+                setting=Mods
+                expected="$PZ_MODS"
+                ;;
+              WORKSHOP_ITEMS)
+                setting=WorkshopItems
+                expected="$PZ_WORKSHOP_ITEMS"
+                ;;
+            esac
+            actual="$(grep "^${setting}=" "$config" | cut -d= -f2-)"
+            if [ "$actual" != "$expected" ]; then
+              printf "Configured %s does not match the resolved pack\n" "$key" >&2
+              exit 1
+            fi
+            printf "%s: %s\n" "$key" "$(tr ";" "\n" <<<"$actual" | awk "NF { count++ } END { print count + 0 }")"
+          done
+        '
+      - task: rcon
+        vars:
+          COMMAND: players
+
+  pull:
+    desc: Pull the pinned base image and rebuild the local server image
+    preconditions:
+      - sh: test -f .env
+        msg: Run task init or provide .env first
+    cmds:
+      - docker compose build --pull
+
+  up:
+    desc: Start the server and wait for it to become healthy
+    vars:
+      WAIT_TIMEOUT: '{{default "1200" .WAIT_TIMEOUT}}'
+    preconditions:
+      - sh: test -f .env
+        msg: Run task init or provide .env first
+      - sh: test -f mods/resolved.env
+        msg: Run task mods:sync first
+    cmds:
+      - docker compose up --build --detach --wait --wait-timeout {{.WAIT_TIMEOUT}}
+
+  logs:
+    desc: Follow server logs
+    preconditions:
+      - sh: test -f .env
+        msg: Run task init or provide .env first
+    cmds:
+      - docker compose logs --follow --tail 200 projectzomboid
+
+  status:
+    desc: Show container status and health
+    preconditions:
+      - sh: test -f .env
+        msg: Run task init or provide .env first
+    cmds:
+      - docker compose ps
+
+  rcon:
+    desc: "Run an RCON command (for example: task rcon COMMAND=players)"
+    vars:
+      COMMAND: '{{default "" .COMMAND}}'
+    preconditions:
+      - sh: test -f .env
+        msg: Run task init or provide .env first
+      - sh: test -n "{{.COMMAND}}"
+        msg: "Provide an RCON command, for example: task rcon COMMAND=players"
+    cmds:
+      - docker compose exec -T projectzomboid rcon-cli -c /home/steam/server/rcon.yml "{{.COMMAND}}"
+
+  stop:
+    desc: Save and stop the server gracefully
+    preconditions:
+      - sh: test -f .env
+        msg: Run task init or provide .env first
+    cmds:
+      - docker compose stop --timeout 60 projectzomboid
+
+  down:
+    desc: Remove containers and networks without deleting data
+    preconditions:
+      - sh: test -f .env
+        msg: Run task init or provide .env first
+    cmds:
+      - docker compose down --remove-orphans
+
+  update:
+    desc: Update server files once and restart gracefully
+    vars:
+      WAIT_TIMEOUT: '{{default "1200" .WAIT_TIMEOUT}}'
+    preconditions:
+      - sh: test -f .env
+        msg: Run task init or provide .env first
+      - sh: test -f mods/resolved.env
+        msg: Run task mods:sync first
+    cmds:
+      - UPDATE_ON_START=true docker compose up --build --detach --force-recreate --wait --wait-timeout {{.WAIT_TIMEOUT}}
+
+  reset:
+    desc: Delete this host's world and server files, then initialize a new server
+    vars:
+      CONFIRM: '{{default "" .CONFIRM}}'
+      WAIT_TIMEOUT: '{{default "1200" .WAIT_TIMEOUT}}'
+    preconditions:
+      - sh: test -f .env
+        msg: Run task init or provide .env first
+      - sh: test -f mods/resolved.env
+        msg: Run task mods:sync first
+      - sh: test "{{.CONFIRM}}" = reset
+        msg: This deletes all server data. Run task reset CONFIRM=reset to continue
+    cmds:
+      - docker compose down --volumes --remove-orphans
+      - docker compose up --build --detach --wait --wait-timeout {{.WAIT_TIMEOUT}}

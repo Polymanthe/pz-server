@@ -1,0 +1,1861 @@
+{
+  "app_id": "108600",
+  "duplicate_mod_ids": {},
+  "items": {
+    "2409333430": {
+      "installed": true,
+      "mods": [
+        {
+          "build42_metadata": true,
+          "id": "91range",
+          "metadata_path": "mods/91range/42.13/mod.info",
+          "name": "'91 RANGE ROVER Classic",
+          "requires": [
+            "damnlib"
+          ]
+        }
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2409333430"
+    },
+    "2422681177": {
+      "installed": true,
+      "mods": [
+        {
+          "build42_metadata": false,
+          "id": "90niva",
+          "metadata_path": "mods/90niva/mod.info",
+          "name": "'90 Lada Niva",
+          "requires": []
+        }
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2422681177"
+    },
+    "2469388752": {
+      "installed": true,
+      "mods": [
+        {
+          "build42_metadata": false,
+          "id": "85merc",
+          "metadata_path": "mods/85merc/mod.info",
+          "name": "'85 Mercedes-Benz W123",
+          "requires": []
+        }
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2469388752"
+    },
+    "2478247379": {
+      "installed": true,
+      "mods": [
+        {
+          "build42_metadata": true,
+          "id": "67commando",
+          "metadata_path": "mods/67commando/42.13/mod.info",
+          "name": "'67 M706 Cadillac Gage Commando V100",
+          "requires": [
+            "damnlib"
+          ]
+        }
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2478247379"
+    },
+    "2489148104": {
+      "installed": true,
+      "mods": [
+        {
+          "build42_metadata": false,
+          "id": "87cruiser",
+          "metadata_path": "mods/87cruiser/mod.info",
+          "name": "'87 TOYOTA Land Cruiser FJ60",
+          "requires": []
+        }
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2489148104"
+    },
+    "2516123638": {
+      "installed": true,
+      "mods": [
+        {
+          "build42_metadata": false,
+          "id": "88golfMk2",
+          "metadata_path": "mods/88golfMk2/mod.info",
+          "name": "'88 Volkswagen Golf Mk2",
+          "requires": []
+        }
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2516123638"
+    },
+    "2522173579": {
+      "installed": true,
+      "mods": [
+        {
+          "build42_metadata": false,
+          "id": "88jettaMk2",
+          "metadata_path": "mods/88jettaMk2/mod.info",
+          "name": "'88 Volkswagen Jetta Mk2",
+          "requires": []
+        }
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2522173579"
+    },
+    "2566953935": {
+      "installed": true,
+      "mods": [
+        {
+          "build42_metadata": true,
+          "id": "86oshkoshP19A",
+          "metadata_path": "mods/86oshkoshP19A/42.13/mod.info",
+          "name": "'86 Oshkosh P19A + Military Trailers",
+          "requires": [
+            "damnlib"
+          ]
+        }
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2566953935"
+    },
+    "2618213077": {
+      "installed": true,
+      "mods": [
+        {
+          "build42_metadata": true,
+          "id": "82oshkoshM911",
+          "metadata_path": "mods/82oshkoshM911/42.13/mod.info",
+          "name": "'82 Oshkosh M911",
+          "requires": [
+            "damnlib"
+          ]
+        }
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2618213077"
+    },
+    "2642541073": {
+      "installed": true,
+      "mods": [
+        {
+          "build42_metadata": true,
+          "id": "92amgeneralM998",
+          "metadata_path": "mods/92amgeneralM998/42.13/mod.info",
+          "name": "'92 AM General M998 + M101A3 Trailer",
+          "requires": [
+            "damnlib"
+          ]
+        },
+        {
+          "build42_metadata": true,
+          "id": "92amgeneralM998extra",
+          "metadata_path": "mods/92amgeneralM998extra/42.0/mod.info",
+          "name": "'92 AM General M998 + M101A3 Trailer Extra Textures",
+          "requires": [
+            "92amgeneralM998"
+          ]
+        }
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2642541073"
+    },
+    "2772575623": {
+      "installed": true,
+      "mods": [
+        {
+          "build42_metadata": true,
+          "id": "59meteor",
+          "metadata_path": "mods/59 Cadillac Miller-Meteor/42.13/mod.info",
+          "name": "'59 Cadillac Miller-Meteor",
+          "requires": [
+            "damnlib"
+          ]
+        },
+        {
+          "build42_metadata": true,
+          "id": "ECTO1",
+          "metadata_path": "mods/59 Cadillac Miller-Meteor ECTO1/42.0/mod.info",
+          "name": "'59 Cadillac Miller-Meteor ECTO-1",
+          "requires": [
+            "59meteor"
+          ]
+        }
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2772575623"
+    },
+    "2785549133": {
+      "installed": true,
+      "mods": [
+        {
+          "build42_metadata": false,
+          "id": "74amgeneralM151A2",
+          "metadata_path": "mods/74amgeneralM151A2/mod.info",
+          "name": "'74 AM General M151A2 MUTT",
+          "requires": [
+            "damnlib"
+          ]
+        }
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2785549133"
+    },
+    "2799152995": {
+      "installed": true,
+      "mods": [
+        {
+          "build42_metadata": true,
+          "id": "78amgeneralM35A2",
+          "metadata_path": "mods/78amgeneralM35A2/42.13/mod.info",
+          "name": "'78 AM General M35 Series Trucks",
+          "requires": [
+            "damnlib"
+          ]
+        },
+        {
+          "build42_metadata": true,
+          "id": "78amgeneralM35A2extra",
+          "metadata_path": "mods/78amgeneralM35A2extra/42.0/mod.info",
+          "name": "'78 AM General M35 Series Trucks Extra Textures",
+          "requires": [
+            "78amgeneralM35A2"
+          ]
+        },
+        {
+          "build42_metadata": true,
+          "id": "78amgeneralM49A2C",
+          "metadata_path": "mods/78amgeneralM49A2C/42.0/mod.info",
+          "name": "'78 AM General M49A2C",
+          "requires": [
+            "78amgeneralM35A2"
+          ]
+        },
+        {
+          "build42_metadata": true,
+          "id": "78amgeneralM50A3",
+          "metadata_path": "mods/78amgeneralM50A3/42.0/mod.info",
+          "name": "'78 AM General M50A3 Water Tanker",
+          "requires": [
+            "78amgeneralM35A2"
+          ]
+        },
+        {
+          "build42_metadata": true,
+          "id": "78amgeneralM62",
+          "metadata_path": "mods/78amgeneralM62/42.0/mod.info",
+          "name": "'78 AM General M62 Wrecker",
+          "requires": [
+            "78amgeneralM35A2"
+          ]
+        }
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2799152995"
+    },
+    "2805630347": {
+      "installed": true,
+      "mods": [
+        {
+          "build42_metadata": true,
+          "id": "84merc",
+          "metadata_path": "mods/84mercW460/42.13/mod.info",
+          "name": "'84 Mercedes Benz W460",
+          "requires": [
+            "damnlib"
+          ]
+        }
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2805630347"
+    },
+    "2811383142": {
+      "installed": true,
+      "mods": [
+        {
+          "build42_metadata": true,
+          "id": "83amgeneralM923",
+          "metadata_path": "mods/83amgeneralM923/42.0/mod.info",
+          "name": "'83 AM General M923 Hillbilly",
+          "requires": [
+            "damnlib"
+          ]
+        },
+        {
+          "build42_metadata": true,
+          "id": "83amgeneralM923extra",
+          "metadata_path": "mods/83amgeneralM923extra/42.0/mod.info",
+          "name": "'83 AM General M923 Hillbilly Extra Textures",
+          "requires": [
+            "83amgeneralM923"
+          ]
+        }
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2811383142"
+    },
+    "2846036306": {
+      "installed": true,
+      "mods": [
+        {
+          "build42_metadata": true,
+          "id": "92nissanGTR",
+          "metadata_path": "mods/92nissanGTR/42.13/mod.info",
+          "name": "'92 NISSAN Skyline GT-R (R32)",
+          "requires": [
+            "damnlib"
+          ]
+        }
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2846036306"
+    },
+    "2870394916": {
+      "installed": true,
+      "mods": [
+        {
+          "build42_metadata": true,
+          "id": "86fordE150",
+          "metadata_path": "mods/86fordE150/42.13/mod.info",
+          "name": "'86 Ford Econoline E150",
+          "requires": [
+            "damnlib"
+          ]
+        },
+        {
+          "build42_metadata": true,
+          "id": "86fordE150dnd",
+          "metadata_path": "mods/86fordE150dnd/42.0/mod.info",
+          "name": "'86 Ford Econoline E150 Mutt Cutts van",
+          "requires": [
+            "86fordE150"
+          ]
+        },
+        {
+          "build42_metadata": true,
+          "id": "86fordE150expanded",
+          "metadata_path": "mods/86fordE150expanded/42.0/mod.info",
+          "name": "'86 Ford Econoline E150 Expanded",
+          "requires": [
+            "86fordE150"
+          ]
+        },
+        {
+          "build42_metadata": true,
+          "id": "86fordE150mm",
+          "metadata_path": "mods/86fordE150mm/42.0/mod.info",
+          "name": "'86 Ford Econoline E150 Mystery Machine",
+          "requires": [
+            "86fordE150"
+          ]
+        },
+        {
+          "build42_metadata": true,
+          "id": "86fordE150pd",
+          "metadata_path": "mods/86fordE150pd/42.0/mod.info",
+          "name": "'86 Ford Econoline E150 Payday Escape Van",
+          "requires": [
+            "86fordE150"
+          ]
+        }
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2870394916"
+    },
+    "2873290424": {
+      "installed": true,
+      "mods": [
+        {
+          "build42_metadata": true,
+          "id": "70dodge",
+          "metadata_path": "mods/70dodge/42.13/mod.info",
+          "name": "'70 Dodge Challenger",
+          "requires": [
+            "damnlib"
+          ]
+        }
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2873290424"
+    },
+    "2886832257": {
+      "installed": true,
+      "mods": [
+        {
+          "build42_metadata": true,
+          "id": "82jeepJ10",
+          "metadata_path": "mods/82jeepJ10/42.13/mod.info",
+          "name": "'82 Jeep J10",
+          "requires": [
+            "damnlib"
+          ]
+        },
+        {
+          "build42_metadata": true,
+          "id": "82jeepJ10t",
+          "metadata_path": "mods/82jeepJ10t/42.0/mod.info",
+          "name": "'82 Jeep J10 Mellow Yellow",
+          "requires": [
+            "82jeepJ10"
+          ]
+        }
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2886832257"
+    },
+    "2886832936": {
+      "installed": true,
+      "mods": [
+        {
+          "build42_metadata": true,
+          "id": "88chevyS10",
+          "metadata_path": "mods/88chevyS10/42.13/mod.info",
+          "name": "'88 Chevrolet S10",
+          "requires": [
+            "damnlib"
+          ]
+        }
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2886832936"
+    },
+    "2886833398": {
+      "installed": true,
+      "mods": [
+        {
+          "build42_metadata": true,
+          "id": "89fordBronco",
+          "metadata_path": "mods/89fordBronco/42.13/mod.info",
+          "name": "'89 Ford Bronco",
+          "requires": [
+            "damnlib"
+          ]
+        }
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2886833398"
+    },
+    "2900580391": {
+      "installed": true,
+      "mods": [
+        {
+          "build42_metadata": true,
+          "id": "49powerWagon",
+          "metadata_path": "mods/49powerWagon/42.13/mod.info",
+          "name": "'49 Dodge Power Wagon Crew Cab",
+          "requires": [
+            "damnlib"
+          ]
+        }
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2900580391"
+    },
+    "2913633066": {
+      "installed": true,
+      "mods": [
+        {
+          "build42_metadata": true,
+          "id": "70barracuda",
+          "metadata_path": "mods/70barracuda/42.13/mod.info",
+          "name": "'70 Plymouth Barracuda",
+          "requires": [
+            "damnlib"
+          ]
+        }
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2913633066"
+    },
+    "2932547723": {
+      "installed": true,
+      "mods": [
+        {
+          "build42_metadata": true,
+          "id": "93townCar",
+          "metadata_path": "mods/93townCar/42.13/mod.info",
+          "name": "'93 Lincoln Town Car",
+          "requires": [
+            "damnlib"
+          ]
+        }
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2932547723"
+    },
+    "2932549988": {
+      "installed": true,
+      "mods": [
+        {
+          "build42_metadata": true,
+          "id": "89trooper",
+          "metadata_path": "mods/89trooper/42.13/mod.info",
+          "name": "'89 Isuzu Trooper",
+          "requires": [
+            "damnlib"
+          ]
+        }
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2932549988"
+    },
+    "2937786633": {
+      "installed": true,
+      "mods": [
+        {
+          "build42_metadata": true,
+          "id": "69mini",
+          "metadata_path": "mods/69mini/42.13/mod.info",
+          "name": "'69 Mini Mk2",
+          "requires": [
+            "damnlib"
+          ]
+        },
+        {
+          "build42_metadata": true,
+          "id": "69mini_ItalianJob",
+          "metadata_path": "mods/69mini_ItalianJob/42.0/mod.info",
+          "name": "'69 Mini Mk2 Italian Job",
+          "requires": [
+            "69mini"
+          ]
+        },
+        {
+          "build42_metadata": true,
+          "id": "69mini_MrBean",
+          "metadata_path": "mods/69mini_MrBean/42.0/mod.info",
+          "name": "'69 Mini Mk2 Mr Bean",
+          "requires": [
+            "69mini"
+          ]
+        },
+        {
+          "build42_metadata": true,
+          "id": "69mini_PitbullSpecial",
+          "metadata_path": "mods/69mini_PitbullSpecial/42.0/mod.info",
+          "name": "'69 Mini Mk2 Pitbull Special",
+          "requires": [
+            "69mini"
+          ]
+        }
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2937786633"
+    },
+    "2942793445": {
+      "installed": true,
+      "mods": [
+        {
+          "build42_metadata": true,
+          "id": "90pierceArrow",
+          "metadata_path": "mods/90pierceArrow/42.13/mod.info",
+          "name": "'90 Pierce Arrow Pumper",
+          "requires": [
+            "damnlib"
+          ]
+        }
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2942793445"
+    },
+    "2952802178": {
+      "installed": true,
+      "mods": [
+        {
+          "build42_metadata": true,
+          "id": "90fordF350ambulance",
+          "metadata_path": "mods/90fordF350ambulance/42.13/mod.info",
+          "name": "'90 Ford F350 Ambulance Type 1",
+          "requires": [
+            "damnlib"
+          ]
+        }
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2952802178"
+    },
+    "2962175696": {
+      "installed": true,
+      "mods": [
+        {
+          "build42_metadata": true,
+          "id": "92fordCVPI",
+          "metadata_path": "mods/92fordCVPI/42.13/mod.info",
+          "name": "'92 Ford Crown Victoria Police Interceptor",
+          "requires": [
+            "damnlib"
+          ]
+        }
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2962175696"
+    },
+    "2969343830": {
+      "installed": true,
+      "mods": [
+        {
+          "build42_metadata": true,
+          "id": "93fordElgin",
+          "metadata_path": "mods/93fordElgin/42.17/mod.info",
+          "name": "'93 Ford CF8000 Elgin Street Sweeper",
+          "requires": [
+            "damnlib"
+          ]
+        }
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2969343830"
+    },
+    "2991201484": {
+      "installed": true,
+      "mods": [
+        {
+          "build42_metadata": true,
+          "id": "69camaro",
+          "metadata_path": "mods/69camaro/42.13/mod.info",
+          "name": "'69 Chevrolet Camaro",
+          "requires": [
+            "damnlib"
+          ]
+        }
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2991201484"
+    },
+    "3001592312": {
+      "installed": true,
+      "mods": [
+        {
+          "build42_metadata": true,
+          "id": "93mustangSSP",
+          "metadata_path": "mods/93mustangSSP/42.13/mod.info",
+          "name": "'93 Ford Mustang",
+          "requires": [
+            "damnlib"
+          ]
+        }
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3001592312"
+    },
+    "3005903549": {
+      "installed": true,
+      "mods": [
+        {
+          "build42_metadata": true,
+          "id": "63beetle",
+          "metadata_path": "mods/63beetle/42.13/mod.info",
+          "name": "'63 Volkswagen 1300 Beetle",
+          "requires": [
+            "damnlib"
+          ]
+        }
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3005903549"
+    },
+    "3008795514": {
+      "installed": true,
+      "mods": [
+        {
+          "build42_metadata": true,
+          "id": "91geoMetro",
+          "metadata_path": "mods/91geoMetro/42.13/mod.info",
+          "name": "'91 Geo Metro",
+          "requires": [
+            "damnlib"
+          ]
+        }
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3008795514"
+    },
+    "3026723485": {
+      "installed": true,
+      "mods": [
+        {
+          "build42_metadata": true,
+          "id": "67gt500",
+          "metadata_path": "mods/67gt500/42.13/mod.info",
+          "name": "'67 Shelby GT500 + Eleanor",
+          "requires": [
+            "damnlib"
+          ]
+        }
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3026723485"
+    },
+    "3034636011": {
+      "installed": true,
+      "mods": [
+        {
+          "build42_metadata": true,
+          "id": "89dodgeCaravan",
+          "metadata_path": "mods/89dodgeCaravan/42.13/mod.info",
+          "name": "'89 Dodge Caravan",
+          "requires": [
+            "damnlib"
+          ]
+        }
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3034636011"
+    },
+    "3041122351": {
+      "installed": true,
+      "mods": [
+        {
+          "build42_metadata": true,
+          "id": "63Type2Van",
+          "metadata_path": "mods/63Type2Van/42.13/mod.info",
+          "name": "'63 Volkswagen Type 2 Van",
+          "requires": [
+            "damnlib"
+          ]
+        }
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3041122351"
+    },
+    "3052360250": {
+      "installed": true,
+      "mods": [
+        {
+          "build42_metadata": true,
+          "id": "87toyotaMR2",
+          "metadata_path": "mods/87toyotaMR2/42.13/mod.info",
+          "name": "'87 Toyota MR2",
+          "requires": [
+            "damnlib"
+          ]
+        }
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3052360250"
+    },
+    "3073430075": {
+      "installed": true,
+      "mods": [
+        {
+          "build42_metadata": true,
+          "id": "93fordF350",
+          "metadata_path": "mods/93fordF350/42.13/mod.info",
+          "name": "'93 Ford F-Series",
+          "requires": [
+            "damnlib"
+          ]
+        }
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3073430075"
+    },
+    "3088951320": {
+      "installed": true,
+      "mods": [
+        {
+          "build42_metadata": true,
+          "id": "93fordTaurus",
+          "metadata_path": "mods/93fordTaurus/42.13/mod.info",
+          "name": "'93 Ford Taurus",
+          "requires": [
+            "damnlib"
+          ]
+        }
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3088951320"
+    },
+    "3110911330": {
+      "installed": true,
+      "mods": [
+        {
+          "build42_metadata": true,
+          "id": "87fordB700",
+          "metadata_path": "mods/87fordB700/42.13/mod.info",
+          "name": "'87 Ford B700/F700 Trucks",
+          "requires": [
+            "damnlib"
+          ]
+        }
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3110911330"
+    },
+    "3110913021": {
+      "installed": true,
+      "mods": [
+        {
+          "build42_metadata": true,
+          "id": "90bmwE30",
+          "metadata_path": "mods/90bmwE30/42.13/mod.info",
+          "name": "'90 BMW 3 Series (E30)",
+          "requires": [
+            "damnlib"
+          ]
+        }
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3110913021"
+    },
+    "3152529790": {
+      "installed": true,
+      "mods": [
+        {
+          "build42_metadata": true,
+          "id": "93chevySuburban",
+          "metadata_path": "mods/93chevySuburban/42.13/mod.info",
+          "name": "'93 Chevrolet Suburban / Silverado",
+          "requires": [
+            "damnlib"
+          ]
+        },
+        {
+          "build42_metadata": true,
+          "id": "93chevySuburbanExpanded",
+          "metadata_path": "mods/93chevySuburbanExpanded/42.0/mod.info",
+          "name": "'93 Chevrolet Suburban / Silverado Expanded",
+          "requires": [
+            "93chevySuburban"
+          ]
+        }
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3152529790"
+    },
+    "3161951724": {
+      "installed": true,
+      "mods": [
+        {
+          "build42_metadata": true,
+          "id": "76chevyKseries",
+          "metadata_path": "mods/76chevyKseries/42.13/mod.info",
+          "name": "'76 Chevrolet K series",
+          "requires": [
+            "damnlib"
+          ]
+        }
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3161951724"
+    },
+    "3171167894": {
+      "installed": true,
+      "mods": [
+        {
+          "build42_metadata": true,
+          "id": "damnlib",
+          "metadata_path": "mods/damnlib/42.17/mod.info",
+          "name": "that DAMN Library",
+          "requires": []
+        }
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3171167894"
+    },
+    "3171176891": {
+      "installed": true,
+      "mods": [
+        {
+          "build42_metadata": false,
+          "id": "49ford8N",
+          "metadata_path": "mods/49ford8N/mod.info",
+          "name": "'49 Ford 8N Tractor",
+          "requires": [
+            "damnlib"
+          ]
+        }
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3171176891"
+    },
+    "3171184800": {
+      "installed": true,
+      "mods": [
+        {
+          "build42_metadata": false,
+          "id": "84gageV300",
+          "metadata_path": "mods/84gageV300/mod.info",
+          "name": "'84 Cadillac Gage LAV-300",
+          "requires": [
+            "damnlib"
+          ]
+        }
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3171184800"
+    },
+    "3196180339": {
+      "installed": true,
+      "mods": [
+        {
+          "build42_metadata": true,
+          "id": "87chevySuburban",
+          "metadata_path": "mods/87chevySuburban/42.13/mod.info",
+          "name": "'87 Chevrolet Suburban",
+          "requires": [
+            "damnlib"
+          ]
+        }
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3196180339"
+    },
+    "3213391371": {
+      "installed": true,
+      "mods": [
+        {
+          "build42_metadata": true,
+          "id": "75grandPrix",
+          "metadata_path": "mods/75grandPrix/42.13/mod.info",
+          "name": "'75 Pontiac Grand Prix",
+          "requires": [
+            "damnlib"
+          ]
+        }
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3213391371"
+    },
+    "3226885926": {
+      "installed": true,
+      "mods": [
+        {
+          "build42_metadata": true,
+          "id": "87buickRegal",
+          "metadata_path": "mods/87buickRegal/42.13/mod.info",
+          "name": "'87 Buick Regal",
+          "requires": [
+            "damnlib"
+          ]
+        }
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3226885926"
+    },
+    "3248388837": {
+      "installed": true,
+      "mods": [
+        {
+          "build42_metadata": true,
+          "id": "80manKat1",
+          "metadata_path": "mods/80manKat1/42.0/mod.info",
+          "name": "'80 MAN KAT1",
+          "requires": [
+            "damnlib"
+          ]
+        }
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3248388837"
+    },
+    "3253385114": {
+      "installed": true,
+      "mods": [
+        {
+          "build42_metadata": true,
+          "id": "81deloreanDMC12",
+          "metadata_path": "mods/81deloreanDMC12/42.13/mod.info",
+          "name": "'81 DeLorean DMC-12",
+          "requires": [
+            "damnlib"
+          ]
+        },
+        {
+          "build42_metadata": true,
+          "id": "81deloreanDMC12BTTF",
+          "metadata_path": "mods/81deloreanDMC12BTTF/42.0/mod.info",
+          "name": "'81 DeLorean DMC-12 Time Machine",
+          "requires": [
+            "81deloreanDMC12"
+          ]
+        }
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3253385114"
+    },
+    "3258343790": {
+      "installed": true,
+      "mods": [
+        {
+          "build42_metadata": true,
+          "id": "68firebird",
+          "metadata_path": "mods/68firebird/42.13/mod.info",
+          "name": "'68 Pontiac Firebird",
+          "requires": [
+            "damnlib"
+          ]
+        }
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3258343790"
+    },
+    "3287727378": {
+      "installed": true,
+      "mods": [
+        {
+          "build42_metadata": true,
+          "id": "92jeepYJ",
+          "metadata_path": "mods/92jeepYJ/42.13/mod.info",
+          "name": "'92 Jeep Wrangler YJ",
+          "requires": [
+            "damnlib"
+          ]
+        },
+        {
+          "build42_metadata": true,
+          "id": "92jeepYJJP18",
+          "metadata_path": "mods/92jeepYJJP18/42.0/mod.info",
+          "name": "'92 Jeep Wrangler YJ JP18",
+          "requires": [
+            "92jeepYJ"
+          ]
+        }
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3287727378"
+    },
+    "3292659291": {
+      "installed": true,
+      "mods": [
+        {
+          "build42_metadata": true,
+          "id": "89volvo200",
+          "metadata_path": "mods/89volvo200/42.13/mod.info",
+          "name": "'89 Volvo 200 Series",
+          "requires": [
+            "damnlib"
+          ]
+        }
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3292659291"
+    },
+    "3307376332": {
+      "installed": true,
+      "mods": [
+        {
+          "build42_metadata": true,
+          "id": "GanydeBielovzki's Frockin Splendor!",
+          "metadata_path": "mods/Frockin Splendor!/42.15/mod.info",
+          "name": "Frockin Splendor!",
+          "requires": []
+        }
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3307376332"
+    },
+    "3320947974": {
+      "installed": true,
+      "mods": [
+        {
+          "build42_metadata": true,
+          "id": "82firebird",
+          "metadata_path": "mods/82firebird/42.13/mod.info",
+          "name": "'82 Pontiac Firebird",
+          "requires": [
+            "damnlib"
+          ]
+        },
+        {
+          "build42_metadata": true,
+          "id": "82firebirdKITT",
+          "metadata_path": "mods/82firebirdKITT/42.0/mod.info",
+          "name": "'82 Pontiac Firebird Trans Am KITT",
+          "requires": [
+            "82firebird"
+          ]
+        }
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3320947974"
+    },
+    "3330401526": {
+      "installed": true,
+      "mods": [
+        {
+          "build42_metadata": false,
+          "id": "85clubMan",
+          "metadata_path": "mods/85clubMan/mod.info",
+          "name": "'85 Club Car Golf Cart",
+          "requires": [
+            "damnlib"
+          ]
+        }
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3330401526"
+    },
+    "3330403100": {
+      "installed": true,
+      "mods": [
+        {
+          "build42_metadata": true,
+          "id": "KI5trailers",
+          "metadata_path": "mods/KI5trailers/42.13/mod.info",
+          "name": "Trailers!",
+          "requires": [
+            "damnlib"
+          ]
+        }
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3330403100"
+    },
+    "3346905070": {
+      "installed": true,
+      "mods": [
+        {
+          "build42_metadata": true,
+          "id": "77firebird",
+          "metadata_path": "mods/77firebird/42.13/mod.info",
+          "name": "'77 Pontiac Firebird",
+          "requires": [
+            "damnlib"
+          ]
+        }
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3346905070"
+    },
+    "3366300557": {
+      "installed": true,
+      "mods": [
+        {
+          "build42_metadata": true,
+          "id": "91fordLTD",
+          "metadata_path": "mods/91fordLTD/42.13/mod.info",
+          "name": "'91 Ford LTD Crown Victoria",
+          "requires": [
+            "damnlib"
+          ]
+        }
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3366300557"
+    },
+    "3379334330": {
+      "installed": true,
+      "mods": [
+        {
+          "build42_metadata": true,
+          "id": "82porsche911",
+          "metadata_path": "mods/82porsche911/42.13/mod.info",
+          "name": "'82 Porsche 911",
+          "requires": [
+            "damnlib"
+          ]
+        }
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3379334330"
+    },
+    "3409287192": {
+      "installed": true,
+      "mods": [
+        {
+          "build42_metadata": true,
+          "id": "84jeepXJ",
+          "metadata_path": "mods/84jeepXJ/42.13/mod.info",
+          "name": "'84 Jeep XJ Cherokee",
+          "requires": [
+            "damnlib"
+          ]
+        }
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3409287192"
+    },
+    "3411888105": {
+      "installed": true,
+      "mods": [
+        {
+          "build42_metadata": true,
+          "id": "GanydeBielovzki's Frockin Splendor! Vol.2",
+          "metadata_path": "mods/Frockin Splendor! Vol.2/42.15/mod.info",
+          "name": "Frockin Splendor! Vol.2",
+          "requires": []
+        }
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3411888105"
+    },
+    "3413704851": {
+      "installed": true,
+      "mods": [
+        {
+          "build42_metadata": true,
+          "id": "85chevyCaprice",
+          "metadata_path": "mods/85chevyCaprice/42.13/mod.info",
+          "name": "'85 Chevrolet Caprice / Impala",
+          "requires": [
+            "damnlib"
+          ]
+        }
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3413704851"
+    },
+    "3413706334": {
+      "installed": true,
+      "mods": [
+        {
+          "build42_metadata": true,
+          "id": "85pontiacParisienne",
+          "metadata_path": "mods/85pontiacParisienne/42.0/mod.info",
+          "name": "'85 Pontiac Parisienne",
+          "requires": [
+            "damnlib"
+          ]
+        }
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3413706334"
+    },
+    "3418252689": {
+      "installed": true,
+      "mods": [
+        {
+          "build42_metadata": true,
+          "id": "85buickLeSabre",
+          "metadata_path": "mods/85buickLeSabre/42.13/mod.info",
+          "name": "'85 Buick LeSabre",
+          "requires": [
+            "damnlib"
+          ]
+        }
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3418252689"
+    },
+    "3418253716": {
+      "installed": true,
+      "mods": [
+        {
+          "build42_metadata": true,
+          "id": "85oldsmobileDelta88",
+          "metadata_path": "mods/85oldsmobileDelta88/42.13/mod.info",
+          "name": "'85 Oldsmobile Delta 88",
+          "requires": [
+            "damnlib"
+          ]
+        }
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3418253716"
+    },
+    "3428008364": {
+      "installed": true,
+      "mods": [
+        {
+          "build42_metadata": true,
+          "id": "86chevyCUCV",
+          "metadata_path": "mods/86chevyCUCV/42.13/mod.info",
+          "name": "'86 Chevrolet CUCVs + M101A2 Trailer",
+          "requires": [
+            "damnlib"
+          ]
+        }
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3428008364"
+    },
+    "3431256608": {
+      "installed": true,
+      "mods": [
+        {
+          "build42_metadata": true,
+          "id": "GanydeBielovzki's Frockin Splendor! Vol.3",
+          "metadata_path": "mods/Frockin Splendor! Vol.3/42.15/mod.info",
+          "name": "Frockin Splendor! Vol.3",
+          "requires": [
+            "GanydeBielovzki's Frockin Splendor! Vol.2"
+          ]
+        }
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3431256608"
+    },
+    "3435796523": {
+      "installed": true,
+      "mods": [
+        {
+          "build42_metadata": true,
+          "id": "88toyotaHilux",
+          "metadata_path": "mods/88toyotaHilux/42.13/mod.info",
+          "name": "'88 Toyota Hilux",
+          "requires": [
+            "damnlib"
+          ]
+        }
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3435796523"
+    },
+    "3437629766": {
+      "installed": true,
+      "mods": [
+        {
+          "build42_metadata": true,
+          "id": "CleanUI",
+          "metadata_path": "mods/CleanUI/42.19/mod.info",
+          "name": "CleanUI",
+          "requires": [
+            "NeatUI_Framework"
+          ]
+        }
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3437629766"
+    },
+    "3447272250": {
+      "installed": true,
+      "mods": [
+        {
+          "build42_metadata": true,
+          "id": "66pontiacLeMans",
+          "metadata_path": "mods/66pontiacLeMans/42.13/mod.info",
+          "name": "'66 Pontiac LeMans / GTO",
+          "requires": [
+            "damnlib"
+          ]
+        }
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3447272250"
+    },
+    "3451167732": {
+      "installed": true,
+      "mods": [
+        {
+          "build42_metadata": true,
+          "id": "ModernStatus",
+          "metadata_path": "mods/MS/42.13/mod.info",
+          "name": "ModernStatus",
+          "requires": [
+            "NeatUI_Framework"
+          ]
+        }
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3451167732"
+    },
+    "3453676250": {
+      "installed": true,
+      "mods": [
+        {
+          "build42_metadata": true,
+          "id": "GanydeBielovzki's Frockin Shirts n Ties",
+          "metadata_path": "mods/Frockin Shirts n Ties/42.13/mod.info",
+          "name": "Frockin Shirts & Ties",
+          "requires": [
+            "GanydeBielovzki's Frockin Splendor! Vol.2"
+          ]
+        }
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3453676250"
+    },
+    "3470659758": {
+      "installed": true,
+      "mods": [
+        {
+          "build42_metadata": true,
+          "id": "TheShortcut",
+          "metadata_path": "mods/TheShortcut/42.14/mod.info",
+          "name": "TheShortcut",
+          "requires": [
+            "NeatUI_Framework"
+          ]
+        }
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3470659758"
+    },
+    "3475347500": {
+      "installed": true,
+      "mods": [
+        {
+          "build42_metadata": true,
+          "id": "GanydeBielovzki's Frockin Splendor! Vol.4",
+          "metadata_path": "mods/Frockin Splendor! Vol.4/42.15/mod.info",
+          "name": "Frockin Splendor! Vol.4",
+          "requires": [
+            "GanydeBielovzki's Frockin Splendor! Vol.2"
+          ]
+        }
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3475347500"
+    },
+    "3490188370": {
+      "installed": true,
+      "mods": [
+        {
+          "build42_metadata": true,
+          "id": "Project_Cook",
+          "metadata_path": "mods/Project_Cook/42.15/mod.info",
+          "name": "Project Cook",
+          "requires": [
+            "NeatUI_Framework"
+          ]
+        },
+        {
+          "build42_metadata": true,
+          "id": "Project_Cook_Pixel_Icon_Pack",
+          "metadata_path": "mods/Project_Cook_Pixel_Icon/42.15/mod.info",
+          "name": "Project Cook Pixel Icon Pack",
+          "requires": [
+            "NeatUI_Framework",
+            "Project_Cook"
+          ]
+        }
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3490188370"
+    },
+    "3490370700": {
+      "installed": true,
+      "mods": [
+        {
+          "build42_metadata": true,
+          "id": "73fordFalcon",
+          "metadata_path": "mods/73fordFalcon/42.13/mod.info",
+          "name": "'73 Ford Falcon",
+          "requires": [
+            "damnlib"
+          ]
+        },
+        {
+          "build42_metadata": true,
+          "id": "73fordFalconPS",
+          "metadata_path": "mods/73fordFalconPS/42.0/mod.info",
+          "name": "'73 Ford Falcon XB GT Pursuit Special",
+          "requires": [
+            "73fordFalcon"
+          ]
+        }
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3490370700"
+    },
+    "3502080466": {
+      "installed": true,
+      "mods": [
+        {
+          "build42_metadata": true,
+          "id": "Neat_Crafting",
+          "metadata_path": "mods/Neat_Crafting/42.13/mod.info",
+          "name": "Neat Crafting",
+          "requires": [
+            "NeatUI_Framework"
+          ]
+        }
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3502080466"
+    },
+    "3504401781": {
+      "installed": true,
+      "mods": [
+        {
+          "build42_metadata": true,
+          "id": "91nissan240sx",
+          "metadata_path": "mods/91nissan240sx/42.13/mod.info",
+          "name": "'91 Nissan 240SX",
+          "requires": [
+            "damnlib"
+          ]
+        }
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3504401781"
+    },
+    "3508537032": {
+      "installed": true,
+      "mods": [
+        {
+          "build42_metadata": true,
+          "id": "NeatUI_Framework",
+          "metadata_path": "mods/NeatUI_Framework/42/mod.info",
+          "name": "NeatUI_Framework",
+          "requires": []
+        }
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3508537032"
+    },
+    "3536052310": {
+      "installed": true,
+      "mods": [
+        {
+          "build42_metadata": true,
+          "id": "Neat_Building",
+          "metadata_path": "mods/Neat_Building/42.15/mod.info",
+          "name": "Neat Building",
+          "requires": [
+            "NeatUI_Framework"
+          ]
+        }
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3536052310"
+    },
+    "3538760023": {
+      "installed": true,
+      "mods": [
+        {
+          "build42_metadata": true,
+          "id": "GanydeBielovzki's Frockin Wiseguys",
+          "metadata_path": "mods/Frockin Wiseguys/42.15/mod.info",
+          "name": "Frockin Wiseguys!",
+          "requires": [
+            "GanydeBielovzki's Frockin Splendor! Vol.2"
+          ]
+        }
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3538760023"
+    },
+    "3539691958": {
+      "installed": true,
+      "mods": [
+        {
+          "build42_metadata": true,
+          "id": "91fordRanger",
+          "metadata_path": "mods/91fordRanger/42.13/mod.info",
+          "name": "'91 Ford Ranger",
+          "requires": [
+            "damnlib"
+          ]
+        }
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3539691958"
+    },
+    "3540503606": {
+      "installed": true,
+      "mods": [
+        {
+          "build42_metadata": true,
+          "id": "Neat_Building_AddonXP",
+          "metadata_path": "mods/NeatBuilding_XP/42.15/mod.info",
+          "name": "Neat Building \u2013 XP & Mod Display",
+          "requires": [
+            "Neat_Building"
+          ]
+        },
+        {
+          "build42_metadata": true,
+          "id": "Neat_Crafting_AddonXP",
+          "metadata_path": "mods/NeatCrafting_XP/42.15/mod.info",
+          "name": "Neat Crafting \u2013 XP & Mod Display",
+          "requires": [
+            "Neat_Crafting"
+          ]
+        }
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3540503606"
+    },
+    "3566868353": {
+      "installed": true,
+      "mods": [
+        {
+          "build42_metadata": true,
+          "id": "65banshee",
+          "metadata_path": "mods/65banshee/42.13/mod.info",
+          "name": "'65 Pontiac Banshee",
+          "requires": [
+            "damnlib"
+          ]
+        }
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3566868353"
+    },
+    "3570973322": {
+      "installed": true,
+      "mods": [
+        {
+          "build42_metadata": true,
+          "id": "89defender",
+          "metadata_path": "mods/89defender/42.13/mod.info",
+          "name": "'89 LAND ROVER Defender",
+          "requires": [
+            "damnlib"
+          ]
+        }
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3570973322"
+    },
+    "3592777775": {
+      "installed": true,
+      "mods": [
+        {
+          "build42_metadata": true,
+          "id": "84cadillacDeVille",
+          "metadata_path": "mods/84cadillacDeVille/42.13/mod.info",
+          "name": "'84 Cadillac DeVille",
+          "requires": [
+            "damnlib"
+          ]
+        }
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3592777775"
+    },
+    "3596903773": {
+      "installed": true,
+      "mods": [
+        {
+          "build42_metadata": true,
+          "id": "84buickElectra",
+          "metadata_path": "mods/84buickElectra/42.13/mod.info",
+          "name": "'84 Buick Electra",
+          "requires": [
+            "damnlib"
+          ]
+        }
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3596903773"
+    },
+    "3601417745": {
+      "installed": true,
+      "mods": [
+        {
+          "build42_metadata": true,
+          "id": "84oldsmobile98",
+          "metadata_path": "mods/84oldsmobile98/42.13/mod.info",
+          "name": "'84 Oldsmobile 98 Regency",
+          "requires": [
+            "damnlib"
+          ]
+        }
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3601417745"
+    },
+    "3614034284": {
+      "installed": true,
+      "mods": [
+        {
+          "build42_metadata": true,
+          "id": "85chevyStepVan",
+          "metadata_path": "mods/85chevyStepVan/42.13/mod.info",
+          "name": "'85 Chevrolet Step-Van",
+          "requires": [
+            "damnlib"
+          ]
+        },
+        {
+          "build42_metadata": true,
+          "id": "85chevyStepVanexpanded",
+          "metadata_path": "mods/85chevyStepVanExpanded/42.0/mod.info",
+          "name": "'85 Chevrolet Step-Van Expanded",
+          "requires": [
+            "85chevyStepVan"
+          ]
+        }
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3614034284"
+    },
+    "3631989559": {
+      "installed": true,
+      "mods": [
+        {
+          "build42_metadata": true,
+          "id": "69charger",
+          "metadata_path": "mods/69charger/42.13/mod.info",
+          "name": "'69 Dodge Charger",
+          "requires": [
+            "damnlib"
+          ]
+        }
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3631989559"
+    },
+    "3635394848": {
+      "installed": true,
+      "mods": [
+        {
+          "build42_metadata": true,
+          "id": "GanydeBielovzki's Frockin Splendor! Vol.5",
+          "metadata_path": "mods/Frockin Splendor! Vol.5/42.15/mod.info",
+          "name": "Frockin Splendor! Vol.5",
+          "requires": [
+            "GanydeBielovzki's Frockin Splendor! Vol.2"
+          ]
+        }
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3635394848"
+    },
+    "3642935062": {
+      "installed": true,
+      "mods": [
+        {
+          "build42_metadata": true,
+          "id": "70roadRunner",
+          "metadata_path": "mods/70roadRunner/42.13/mod.info",
+          "name": "'70 Plymouth Road Runner",
+          "requires": [
+            "damnlib"
+          ]
+        }
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3642935062"
+    },
+    "3670063857": {
+      "installed": true,
+      "mods": [
+        {
+          "build42_metadata": true,
+          "id": "70fordEscort",
+          "metadata_path": "mods/70fordEscort/42.13/mod.info",
+          "name": "'70 Ford Escort",
+          "requires": [
+            "damnlib"
+          ]
+        }
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3670063857"
+    },
+    "3670064951": {
+      "installed": true,
+      "mods": [
+        {
+          "build42_metadata": true,
+          "id": "KI5campers",
+          "metadata_path": "mods/KI5campers/42.13/mod.info",
+          "name": "Campers!",
+          "requires": [
+            "damnlib"
+          ]
+        }
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3670064951"
+    },
+    "3684254299": {
+      "installed": true,
+      "mods": [
+        {
+          "build42_metadata": true,
+          "id": "84corvette",
+          "metadata_path": "mods/84corvette/42.13/mod.info",
+          "name": "'84 Chevrolet Corvette",
+          "requires": [
+            "damnlib"
+          ]
+        }
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3684254299"
+    },
+    "3703948448": {
+      "installed": true,
+      "mods": [
+        {
+          "build42_metadata": true,
+          "id": "79camaro",
+          "metadata_path": "mods/79camaro/42.13/mod.info",
+          "name": "'79 Chevrolet Camaro",
+          "requires": [
+            "damnlib"
+          ]
+        }
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3703948448"
+    },
+    "3726526329": {
+      "installed": true,
+      "mods": [
+        {
+          "build42_metadata": true,
+          "id": "78lamboCountach",
+          "metadata_path": "mods/78lamboCountach/42.13/mod.info",
+          "name": "'78 Lamborghini Countach",
+          "requires": [
+            "damnlib"
+          ]
+        }
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3726526329"
+    },
+    "3730833846": {
+      "installed": true,
+      "mods": [
+        {
+          "build42_metadata": true,
+          "id": "76chryslerNewYorker",
+          "metadata_path": "mods/76chryslerNewYorker/42.13/mod.info",
+          "name": "'76 Chrysler New Yorker",
+          "requires": [
+            "damnlib"
+          ]
+        }
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3730833846"
+    },
+    "3736813592": {
+      "installed": true,
+      "mods": [
+        {
+          "build42_metadata": true,
+          "id": "GanydeBielovzki's Frockin Stompers!",
+          "metadata_path": "mods/Frockin Stompers!/42.15/mod.info",
+          "name": "Frockin Stompers!",
+          "requires": [
+            "GanydeBielovzki's Frockin Splendor! Vol.2"
+          ]
+        },
+        {
+          "build42_metadata": true,
+          "id": "GanydeBielovzki's Frockin Stompers! VFR",
+          "metadata_path": "mods/Frockin Stompers! Vanilla Footwear Replacer/42.15/mod.info",
+          "name": "Frockin Stompers! [Vanilla Footwear Replacement]",
+          "requires": [
+            "GanydeBielovzki's Frockin Splendor! Vol.2"
+          ]
+        }
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3736813592"
+    },
+    "3740052292": {
+      "installed": true,
+      "mods": [
+        {
+          "build42_metadata": true,
+          "id": "CompanionDogs",
+          "metadata_path": "mods/CompanionDogs/42/mod.info",
+          "name": "Companion Dogs [ALPHA]",
+          "requires": []
+        }
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3740052292"
+    },
+    "3743371090": {
+      "installed": true,
+      "mods": [
+        {
+          "build42_metadata": true,
+          "id": "73nissanGTR",
+          "metadata_path": "mods/73nissanGTR/42.13/mod.info",
+          "name": "'73 NISSAN Skyline GT-R",
+          "requires": [
+            "damnlib"
+          ]
+        }
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3743371090"
+    },
+    "3749026793": {
+      "installed": true,
+      "mods": [
+        {
+          "build42_metadata": false,
+          "id": "CVI",
+          "metadata_path": "mods/CarriableItems/common/mod.info",
+          "name": "Carry Visible Items",
+          "requires": []
+        }
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3749026793"
+    },
+    "3756938756": {
+      "installed": true,
+      "mods": [
+        {
+          "build42_metadata": true,
+          "id": "69fordMustang",
+          "metadata_path": "mods/69fordMustang/42.13/mod.info",
+          "name": "'69 Ford Mustang",
+          "requires": [
+            "damnlib"
+          ]
+        },
+        {
+          "build42_metadata": true,
+          "id": "69fordMustangExtra",
+          "metadata_path": "mods/69fordMustangExtra/42.13/mod.info",
+          "name": "'69 Ford Mustang Extra Textures",
+          "requires": [
+            "69fordMustang"
+          ]
+        }
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3756938756"
+    },
+    "3762296152": {
+      "installed": true,
+      "mods": [
+        {
+          "build42_metadata": true,
+          "id": "CompanionDogsRottweiler",
+          "metadata_path": "mods/CompanionDogsRottweiler/42/mod.info",
+          "name": "CD: Rottweiler",
+          "requires": [
+            "CompanionDogs"
+          ]
+        }
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3762296152"
+    },
+    "3766571591": {
+      "installed": true,
+      "mods": [
+        {
+          "build42_metadata": true,
+          "id": "70chevelle",
+          "metadata_path": "mods/70chevelle/42.13/mod.info",
+          "name": "'70 Chevrolet Chevelle / El Camino",
+          "requires": [
+            "damnlib"
+          ]
+        }
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3766571591"
+    },
+    "3770795385": {
+      "installed": true,
+      "mods": [
+        {
+          "build42_metadata": true,
+          "id": "CompanionDogsDoberman",
+          "metadata_path": "mods/CompanionDogsDoberman/42/mod.info",
+          "name": "CD: Doberman",
+          "requires": [
+            "CompanionDogs"
+          ]
+        }
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3770795385"
+    },
+    "3770890864": {
+      "installed": true,
+      "mods": [
+        {
+          "build42_metadata": true,
+          "id": "91lexusLS400",
+          "metadata_path": "mods/91lexusLS400/42.13/mod.info",
+          "name": "'91 Lexus LS400",
+          "requires": [
+            "damnlib"
+          ]
+        }
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3770890864"
+    }
+  },
+  "schema_version": 1
+}

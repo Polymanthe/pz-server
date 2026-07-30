@@ -1,0 +1,3 @@
+[tools]
+python = "3.13"
+task = "3.52.0"
