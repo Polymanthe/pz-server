@@ -227,6 +227,14 @@ tasks:
     cmds:
       - docker compose ps
 
+  connection:
+    desc: Print the password-free Steam link players can use to join
+    preconditions:
+      - sh: test -f .env
+        msg: Run task init or provide .env first
+    cmds:
+      - mise exec -- python scripts/connection_link.py
+
   rcon:
     desc: "Run an RCON command (for example: task rcon COMMAND=players)"
     vars:

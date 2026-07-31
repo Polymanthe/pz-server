@@ -70,6 +70,7 @@ task status
 | `task up` | Démarre le serveur et attend son état healthy |
 | `task logs` | Suit les logs du serveur |
 | `task status` | Affiche le statut et le healthcheck |
+| `task connection` | Affiche le lien Steam à partager aux joueurs |
 | `task mods:refresh WORKSHOP_ID=<id>` | Purge et retélécharge un Workshop item côté serveur |
 | `task rcon COMMAND=players` | Exécute une commande RCON sans exposer RCON sur l'hôte |
 | `task stop` | Sauvegarde et arrête proprement le serveur |
@@ -222,3 +223,25 @@ RCON écoute dans le conteneur sur `27015/tcp`, mais n'est pas publié sur l'hô
 ## Connexion
 
 Dans Project Zomboid, ajouter un favori avec l'adresse IP de l'hôte et le port `16261`. Sur un réseau local, utiliser l'adresse privée de la machine ; depuis Internet, utiliser son IPv4 publique et configurer la redirection UDP correspondante.
+
+### Lien De Connexion
+
+Définir l'adresse publique ou le DNS communiqué aux joueurs dans `.env`, sans schéma ni port :
+
+```dotenv
+SERVER_CONNECT_ADDRESS=pz.example.net
+```
+
+Puis afficher le lien Steam :
+
+```bash
+task connection
+```
+
+Le même lien est écrit dans les logs de démarrage sous une forme stable :
+
+```text
+PZ_CONNECT_LINK=steam://run/108600//%2Bconnect%20pz.example.net%3A16261/
+```
+
+Il ouvre Steam, lance Project Zomboid et transmet `+connect`. Le lien ne contient jamais le mot de passe serveur : le jeu le demandera si nécessaire. Cette ligne est adaptée à une future intégration Discord qui lit les logs ou exécute `task connection`.

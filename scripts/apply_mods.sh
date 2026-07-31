@@ -49,4 +49,18 @@ printf 'Configured %s Workshop items, %s mod IDs, and Public=%s for %s\n' \
   "${PUBLIC_SERVER:-false}" \
   "$server_name"
 
+connect_address="${SERVER_CONNECT_ADDRESS:-}"
+if [ -z "$connect_address" ]; then
+  printf '%s\n' 'PZ_CONNECT_LINK is unavailable: set SERVER_CONNECT_ADDRESS to a public DNS name or IP.'
+elif [[ "$connect_address" == *"://"* || "$connect_address" == *"/"* || "$connect_address" == *" "* ]]; then
+  printf '%s\n' 'PZ_CONNECT_LINK is unavailable: SERVER_CONNECT_ADDRESS must not contain a scheme, path, or spaces.' >&2
+else
+  client_arguments="+connect ${connect_address}:${DEFAULT_PORT:-16261}"
+  if [ "${USE_STEAM:-true}" = "false" ]; then
+    client_arguments="-nosteam ${client_arguments}"
+  fi
+  connect_link="steam://run/108600//$(printf '%s' "$client_arguments" | jq -sRr @uri)/"
+  printf 'PZ_CONNECT_LINK=%s\n' "$connect_link"
+fi
+
 exec /home/steam/server/init.sh
