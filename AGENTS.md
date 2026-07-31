@@ -2,7 +2,7 @@
 
 ## Purpose
 
-This repository defines one portable Project Zomboid dedicated server deployment. The same Compose file must run on macOS Apple Silicon and Linux amd64 hosts, including Dokploy-managed hosts.
+This repository defines one portable Project Zomboid dedicated server deployment. The same Compose file must run on Linux amd64 hosts and Apple Silicon through Docker emulation.
 
 Each host owns an independent world. Do not add save synchronization, shared storage, or automatic migration between hosts unless explicitly requested.
 
@@ -10,8 +10,8 @@ Each host owns an independent world. Do not add save synchronization, shared sto
 
 - `compose.yaml` defines the runtime topology, ports, volumes, health checks, and resource limits.
 - `.env.example` documents every supported deployment variable.
-- Each host provides its own untracked `.env`; Dokploy provides the equivalent variables from its environment UI.
-- `Taskfile.yml` is the operator interface for local and self-managed hosts.
+- Each deployment provides its own untracked `.env`.
+- `Taskfile.yml` is the operator interface.
 - `mise.toml` pins project CLI tools. Docker remains a system prerequisite.
 - `mods/enabled.toml` selects the active Workshop pack.
 - `mods/catalog.lock.json` inventories Workshop IDs, mod IDs, and dependencies discovered from Steam.
@@ -23,8 +23,8 @@ Do not introduce host-specific Compose files when an environment variable is suf
 
 - The Project Zomboid image and game server are `linux/amd64` workloads.
 - Keep `platform: linux/amd64` in Compose so Apple Silicon uses Docker Desktop emulation.
-- Do not assume bind-mounted repository paths are persistent in Dokploy. Runtime data belongs in named volumes.
-- Do not set an explicit Compose project name. Deployments live on separate Docker engines and Dokploy manages its own project name.
+- Runtime data belongs in named volumes, not repository bind mounts.
+- Do not set an explicit Compose project name.
 - Keep the required game ports configurable and published over UDP.
 - RCON must not be published on the host by default.
 

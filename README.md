@@ -1,8 +1,8 @@
 # Project Zomboid Dedicated Server
 
-Déploiement Docker Compose portable d'un serveur dédié Project Zomboid. Le même dépôt fonctionne sur Linux amd64, Dokploy et macOS Apple Silicon.
+Déploiement Docker Compose portable d'un serveur dédié Project Zomboid. Le même dépôt fonctionne sur Linux amd64 et macOS Apple Silicon.
 
-Chaque machine possède ses propres volumes et son propre monde. Le projet ne synchronise ni les sauvegardes ni les données entre les hôtes.
+Chaque déploiement possède ses propres volumes et son propre monde. Le projet ne synchronise ni les sauvegardes ni les données entre les déploiements.
 
 ## Architecture
 
@@ -11,10 +11,10 @@ Chaque machine possède ses propres volumes et son propre monde. Le projet ne sy
 - RCON utilisé en interne pour les arrêts gracieux, sans publication sur l'hôte.
 - Un healthcheck RCON qui vérifie que le serveur répond réellement.
 - Deux volumes Docker nommés pour les binaires et les données du monde.
-- Une configuration `.env` locale par machine.
+- Une configuration `.env` locale par déploiement.
 - Une limite de mémoire Docker distincte de la mémoire maximale de la JVM.
 
-Le serveur officiel Linux est un workload amd64. `platform: linux/amd64` reste donc défini sur toutes les machines, y compris sur un Mac ARM.
+Le serveur officiel Linux est un workload amd64. `platform: linux/amd64` reste donc défini, y compris sur un hôte ARM.
 
 ## Prérequis
 
@@ -80,16 +80,15 @@ Ne jamais utiliser `docker compose down --volumes` pour un serveur contenant un 
 
 ## Configuration
 
-`.env.example` documente toutes les variables prises en charge. Chaque hôte utilise son propre `.env` et peut adapter ses ressources sans modifier `compose.yaml`.
+`.env.example` documente toutes les variables prises en charge. Chaque déploiement utilise son propre `.env` et peut adapter ses ressources sans modifier `compose.yaml`.
 
 Réglages indicatifs :
 
-| Hôte | JVM | Limite Docker | Joueurs |
+| Profil | JVM | Limite Docker | Joueurs |
 |---|---:|---:|---:|
-| Mac de développement avec le pack complet | 6 Go | 10 Go | 4 à 8 |
-| Petit serveur Linux avec le pack complet | 6 Go | 10 Go | 8 à 12 |
-| Machine 64 Go | 8 à 16 Go | 12 à 20 Go | 16 à 32 |
-| VPS avec 4 Go libres | Non recommandé | Non recommandé | Pack réduit seulement |
+| Pack complet | 6 Go | 10 Go | 4 à 12 |
+| Pack réduit | 4 Go | 6 Go | 4 à 8 |
+| Grande capacité | 8 à 16 Go | 12 à 20 Go | 16 à 32 |
 
 `MEMORY_XMX_GB` contrôle le heap Java. `CONTAINER_MEMORY_LIMIT` doit être supérieur afin de laisser de la mémoire aux allocations natives, à Steam et au système du conteneur.
 
@@ -97,7 +96,7 @@ Réglages indicatifs :
 
 ## Mods Steam Workshop
 
-Le pack de mods est une configuration déclarative versionnée dans Git. Steam n'est utilisé que sur la machine de développement pour inventorier les abonnements ; le NUC, le PC fixe et Dokploy téléchargent ensuite les mêmes items depuis leurs propres volumes serveur.
+Le pack de mods est une configuration déclarative versionnée dans Git. Steam n'est utilisé que sur une machine avec le client Steam installé pour inventorier les abonnements ; chaque déploiement télécharge ensuite les mêmes items dans ses propres volumes serveur.
 
 Project Zomboid distingue deux identifiants :
 
@@ -180,7 +179,7 @@ Steam Workshop ne permet pas de verrouiller facilement une version précise d'un
 | `server-files` | Installation du serveur et fichiers Workshop |
 | `server-data` | Configuration, joueurs, base de données et sauvegarde du monde |
 
-Les volumes sont locaux au Docker Engine. Deux machines peuvent utiliser les mêmes noms de volumes et les mêmes ports sans collision. Aucun nom de projet Compose ou namespace propre à l'hôte n'est nécessaire.
+Les volumes sont locaux au Docker Engine. Des déploiements distincts peuvent utiliser les mêmes noms de volumes et les mêmes ports sans collision. Aucun nom de projet Compose ou namespace propre à la machine n'est nécessaire.
 
 ## Apple Silicon
 
@@ -203,17 +202,6 @@ Ouvrir ou rediriger les ports suivants sur l'hôte et le routeur :
 | `16262` | UDP | Connexion directe des joueurs |
 
 RCON écoute dans le conteneur sur `27015/tcp`, mais n'est pas publié sur l'hôte.
-
-## Dokploy
-
-1. Créer un service Docker Compose depuis ce dépôt et sélectionner `compose.yaml`.
-2. Pousser les fichiers du pack sous `mods/` avec le reste du dépôt ; `mods/resolved.env` est chargé par Compose.
-3. Copier les variables de `.env.example` dans l'interface d'environnement Dokploy.
-4. Remplacer les deux mots de passe `CHANGEME` par des secrets forts.
-5. Publier et autoriser `16261/udp` et `16262/udp` dans le firewall Hostinger.
-6. Ne pas configurer de domaine HTTP ou de route Traefik pour ces ports UDP.
-
-Les volumes nommés sont créés par Compose et survivent aux redéploiements. Dokploy peut sauvegarder `server-data` vers une destination S3 si une sauvegarde indépendante de l'hôte devient nécessaire.
 
 ## Connexion
 
