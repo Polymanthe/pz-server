@@ -22,6 +22,7 @@ services:
       DEFAULT_PORT: "${DEFAULT_PORT:-16261}"
       UDP_PORT: "${UDP_PORT:-16262}"
       MAX_PLAYERS: "${MAX_PLAYERS:-8}"
+      PUBLIC_SERVER: "${PUBLIC_SERVER:-false}"
       MEMORY_XMX_GB: "${MEMORY_XMX_GB:-4}"
       MEMORY_XMS_GB: "${MEMORY_XMS_GB:-}"
       VM_ARGS: "${VM_ARGS:-}"

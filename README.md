@@ -94,6 +94,8 @@ Réglages indicatifs :
 
 `SERVER_BRANCH` vide utilise la branche stable. `UPDATE_ON_START=false` évite une mise à jour surprise d'un monde existant. Les fichiers manquants sont néanmoins toujours téléchargés au premier démarrage.
 
+`PUBLIC_SERVER=false` masque le serveur dans le navigateur intégré au jeu. Cette option ne désactive pas Steam : utiliser `USE_STEAM=false` pour un serveur accessible uniquement par connexion IP directe.
+
 ## Mods Steam Workshop
 
 Le pack de mods est une configuration déclarative versionnée dans Git. Steam n'est utilisé que sur une machine avec le client Steam installé pour inventorier les abonnements ; chaque déploiement télécharge ensuite les mêmes items dans ses propres volumes serveur.
