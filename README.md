@@ -70,6 +70,7 @@ task status
 | `task up` | Démarre le serveur et attend son état healthy |
 | `task logs` | Suit les logs du serveur |
 | `task status` | Affiche le statut et le healthcheck |
+| `task mods:refresh WORKSHOP_ID=<id>` | Purge et retélécharge un Workshop item côté serveur |
 | `task rcon COMMAND=players` | Exécute une commande RCON sans exposer RCON sur l'hôte |
 | `task stop` | Sauvegarde et arrête proprement le serveur |
 | `task down` | Retire le conteneur sans supprimer les volumes |
@@ -116,6 +117,19 @@ task mods:sync
 task mods:list
 task mods:plan
 ```
+
+### Rafraîchir Un Mod Côté Serveur
+
+Pour purger le cache d'un seul Workshop item lorsque Steam boucle sur une mise à jour, sans supprimer le monde ni les autres mods :
+
+```bash
+task mods:refresh WORKSHOP_ID=3453676250
+```
+
+La tâche arrête le serveur proprement, supprime uniquement
+`server-files/steamapps/workshop/content/108600/<Workshop ID>`, puis redémarre et
+attend le healthcheck. Le jeu retélécharge l'item au démarrage. Répéter la commande
+pour chaque item concerné, par exemple `3411888105`.
 
 `task mods:list` affiche les Workshop IDs, les `modId`, les dépendances et une URL Steam par item :
 

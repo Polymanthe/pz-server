@@ -106,6 +106,35 @@ tasks:
       - task: mods:discover
       - task: mods:generate
 
+  mods:refresh:
+    desc: Purge one server Workshop cache item and download it again
+    vars:
+      WORKSHOP_ID: '{{default "" .WORKSHOP_ID}}'
+      WAIT_TIMEOUT: '{{default "1200" .WAIT_TIMEOUT}}'
+    preconditions:
+      - sh: test -f .env
+        msg: Run task init or provide .env first
+      - sh: test -f mods/resolved.env
+        msg: Run task mods:sync first
+      - sh: 'case "{{.WORKSHOP_ID}}" in ""|*[!0-9]*) exit 1 ;; esac'
+        msg: "Provide a numeric Workshop ID, for example: task mods:refresh WORKSHOP_ID=3453676250"
+    cmds:
+      - task: stop
+      - |
+        docker compose run --rm --no-deps --entrypoint sh -e "WORKSHOP_ID={{.WORKSHOP_ID}}" projectzomboid -c '
+          set -eu
+          workshop_path="/project-zomboid/steamapps/workshop/content/108600/$WORKSHOP_ID"
+          if [ -d "$workshop_path" ]; then
+            rm -rf -- "$workshop_path"
+            printf "Removed Workshop cache item %s\n" "$WORKSHOP_ID"
+          else
+            printf "Workshop cache item %s was not present\n" "$WORKSHOP_ID"
+          fi
+        '
+      - task: up
+        vars:
+          WAIT_TIMEOUT: '{{.WAIT_TIMEOUT}}'
+
   mods:plan:
     desc: Show the resolved Workshop items, mod IDs, and Steam URLs
     preconditions:
