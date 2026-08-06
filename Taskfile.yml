@@ -165,7 +165,11 @@ tasks:
     cmds:
       - task: mods:generate
       - docker compose config --quiet
-      - docker compose up --build --detach --force-recreate --wait --wait-timeout {{.WAIT_TIMEOUT}}
+      # Only the game server: the mod pack is none of the companion site's
+      # business, so an incomplete web configuration must not block it. The
+      # site reads the pack from a read-only volume and picks the change up on
+      # its own. Use task up to bring the web profile along.
+      - docker compose up --build --detach --force-recreate --wait --wait-timeout {{.WAIT_TIMEOUT}} projectzomboid
 
   mods:verify:
     desc: Verify the active server configuration and RCON availability
@@ -236,6 +240,19 @@ tasks:
         printf '%s\n' '  $2a$14$... becomes $$2a$$14$$...'
         printf '%s\n' 'Docker Compose expands single dollar signs and would corrupt the hash.'
 
+  web:require-password:
+    # Caddy refuses to start on an empty password rather than serving the log
+    # panel unauthenticated, and it crashloops without failing the compose run:
+    # it has no healthcheck, so --wait reports it as started. Only the tasks
+    # that actually start Caddy call this, and reset calls it before it
+    # destroys the volumes. It is a no-op when the web profile is off.
+    internal: true
+    preconditions:
+      - sh: |
+          grep -qE '^COMPOSE_PROFILES=.*web' .env || exit 0
+          grep -qE '^WEB_LOGS_PASSWORD_HASH=.+' .env
+        msg: "The web profile is enabled but WEB_LOGS_PASSWORD_HASH is empty. Run task web:password, then put the hash in .env"
+
   pull:
     desc: Pull the pinned base image and rebuild the local server image
     preconditions:
@@ -253,13 +270,8 @@ tasks:
         msg: Run task init or provide .env first
       - sh: test -f mods/resolved.env
         msg: Run task mods:sync first
-      # Caddy refuses to start on an empty password rather than serving the log
-      # panel unauthenticated. Catch it here so the reason is legible.
-      - sh: |
-          grep -qE '^COMPOSE_PROFILES=.*web' .env || exit 0
-          grep -qE '^WEB_LOGS_PASSWORD_HASH=.+' .env
-        msg: "The web profile is enabled but WEB_LOGS_PASSWORD_HASH is empty. Run task web:password, then put the hash in .env"
     cmds:
+      - task: web:require-password
       - docker compose up --build --detach --wait --wait-timeout {{.WAIT_TIMEOUT}}
 
   logs:
@@ -324,7 +336,8 @@ tasks:
       - sh: test -f mods/resolved.env
         msg: Run task mods:sync first
     cmds:
-      - UPDATE_ON_START=true docker compose up --build --detach --force-recreate --wait --wait-timeout {{.WAIT_TIMEOUT}}
+      # Same as mods:apply: updating the game server does not touch the site.
+      - UPDATE_ON_START=true docker compose up --build --detach --force-recreate --wait --wait-timeout {{.WAIT_TIMEOUT}} projectzomboid
 
   reset:
     desc: Delete this host's world and server files, then initialize a new server
@@ -339,5 +352,6 @@ tasks:
       - sh: test "{{.CONFIRM}}" = reset
         msg: This deletes all server data. Run task reset CONFIRM=reset to continue
     cmds:
+      - task: web:require-password
       - docker compose down --volumes --remove-orphans
       - docker compose up --build --detach --wait --wait-timeout {{.WAIT_TIMEOUT}}
