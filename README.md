@@ -64,13 +64,14 @@ task status
 | Commande | Description |
 |---|---|
 | `task init` | Crée `.env` sans écraser une configuration existante |
-| `task doctor` | Vérifie Docker, Compose et la compatibilité de l'hôte |
+| `task doctor` | Vérifie Docker, Compose, la compatibilité de l'hôte et la version du jeu |
 | `task config` | Valide la configuration Compose résolue |
 | `task pull` | Télécharge l'image épinglée |
 | `task up` | Démarre le serveur et attend son état healthy |
 | `task logs` | Suit les logs du serveur |
 | `task status` | Affiche le statut et le healthcheck |
 | `task connection` | Affiche le lien Steam à partager aux joueurs |
+| `task mods:diff` | Compare le pack et la version du jeu du serveur avec ceux de cette machine |
 | `task mods:refresh WORKSHOP_ID=<id>` | Purge et retélécharge un Workshop item côté serveur |
 | `task rcon COMMAND=players` | Exécute une commande RCON sans exposer RCON sur l'hôte |
 | `task stop` | Sauvegarde et arrête proprement le serveur |
@@ -118,6 +119,38 @@ task mods:sync
 task mods:list
 task mods:plan
 ```
+
+### Diagnostiquer Un Écart Client / Serveur
+
+Quand un joueur est éjecté avec `File doesn't match the one on the server`, le message désigne un fichier arbitraire et n'aide pas. `task mods:diff` compare l'installation Steam de la machine locale avec celle du serveur et donne la cause réelle :
+
+```bash
+task mods:diff
+```
+
+```text
+Game build   server 42.20.2 ffe7a8a4b1
+             client 42.20.2 ffe7a8a4b1
+             match
+
+Missing on this machine, downloaded on first join (0)
+  none
+
+Installed here but not used by the server (2)
+  3536052310  Neat Building
+  3540503606  Neat Building – XP & Mod Display
+
+Shared but diverging (0)
+  none
+
+108 shared items, 108 identical.
+```
+
+La comparaison porte sur la version du jeu, puis sur les fichiers `.lua` et `.txt` de chaque Workshop item, catégorisés en `lua` et `scripts` — ce que l'anti-cheat `AntiCheatChecksum` vérifie côté serveur. Un item installé localement mais absent du pack serveur est simplement ignoré en multijoueur : le serveur impose sa liste.
+
+La tâche retourne un code d'erreur si les versions divergent ou si un item partagé diffère. `task doctor` exécute la même vérification de version comme garde-fou avant `task up`, et l'ignore silencieusement si le serveur n'est pas démarré.
+
+Une divergence de version se corrige avec `task update` : `UPDATE_ON_START=false` empêche le serveur de suivre les correctifs que le client Steam installe automatiquement.
 
 ### Rafraîchir Un Mod Côté Serveur
 

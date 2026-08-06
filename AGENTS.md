@@ -50,9 +50,14 @@ Prefer the corresponding Task command over invoking multi-step Docker commands m
 - `task down`
 - `task update`
 - `task reset CONFIRM=reset`
+- `task connection`
 - `task mods:sync`
 - `task mods:plan`
 - `task mods:apply CONFIRM=mods`
+- `task mods:diff`
+- `task mods:refresh WORKSHOP_ID=<id>`
+
+Diagnose a client kick with `task mods:diff` before touching the mod pack. The Project Zomboid message naming a mismatched file is unreliable; a build difference between the server and a client reports as an unrelated vanilla file.
 
 Stopping the container must allow Project Zomboid to save and quit gracefully. Preserve an adequate `stop_grace_period` and verify shutdown behavior when changing the image or entrypoint.
 

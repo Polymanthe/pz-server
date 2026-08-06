@@ -71,6 +71,7 @@ tasks:
             ;;
         esac
       - docker compose config --quiet
+      - mise exec -- python scripts/diff_mods.py --versions
 
   config:
     desc: Validate the resolved Compose configuration
@@ -134,6 +135,14 @@ tasks:
       - task: up
         vars:
           WAIT_TIMEOUT: '{{.WAIT_TIMEOUT}}'
+
+  mods:diff:
+    desc: Compare the server pack and game build with this machine's Steam install
+    preconditions:
+      - sh: test -f .env
+        msg: Run task init or provide .env first
+    cmds:
+      - mise exec -- python scripts/diff_mods.py
 
   mods:plan:
     desc: Show the resolved Workshop items, mod IDs, and Steam URLs
