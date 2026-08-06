@@ -200,6 +200,42 @@ tasks:
         vars:
           COMMAND: players
 
+  web:build:
+    desc: Build the companion site image
+    preconditions:
+      - sh: test -f .env
+        msg: Run task init or provide .env first
+    cmds:
+      - docker compose --profile web build web
+
+  web:test:
+    desc: Type-check, lint and test the companion site
+    dir: web
+    cmds:
+      - mise exec -- bun install --frozen-lockfile
+      - mise exec -- bun run check
+      - mise exec -- bun run lint
+      - mise exec -- bun test test/
+
+  web:logs:
+    desc: Follow the companion site and reverse proxy logs
+    preconditions:
+      - sh: test -f .env
+        msg: Run task init or provide .env first
+    cmds:
+      - docker compose --profile web logs --follow --tail 200 web caddy
+
+  web:password:
+    desc: Generate the bcrypt hash for the log panel password
+    interactive: true
+    silent: true
+    cmds:
+      - docker run --rm -it "${CADDY_IMAGE:-docker.io/library/caddy:2.10-alpine}" caddy hash-password
+      - |
+        printf '%s\n' 'Put this in .env as WEB_LOGS_PASSWORD_HASH, doubling every dollar sign:'
+        printf '%s\n' '  $2a$14$... becomes $$2a$$14$$...'
+        printf '%s\n' 'Docker Compose expands single dollar signs and would corrupt the hash.'
+
   pull:
     desc: Pull the pinned base image and rebuild the local server image
     preconditions:
@@ -217,6 +253,12 @@ tasks:
         msg: Run task init or provide .env first
       - sh: test -f mods/resolved.env
         msg: Run task mods:sync first
+      # Caddy refuses to start on an empty password rather than serving the log
+      # panel unauthenticated. Catch it here so the reason is legible.
+      - sh: |
+          grep -qE '^COMPOSE_PROFILES=.*web' .env || exit 0
+          grep -qE '^WEB_LOGS_PASSWORD_HASH=.+' .env
+        msg: "The web profile is enabled but WEB_LOGS_PASSWORD_HASH is empty. Run task web:password, then put the hash in .env"
     cmds:
       - docker compose up --build --detach --wait --wait-timeout {{.WAIT_TIMEOUT}}
 

@@ -1,0 +1,45 @@
+# No `email` global option: Caddy refuses to parse an empty one, and a
+# placeholder address would be worse than none. Add `email you@example.org`
+# here by hand if you want certificate notices from the CA.
+{
+	servers {
+		# Cloudflare rewrites the source address of every request. Without this,
+		# access logs record the proxy instead of the player. Put the current
+		# Cloudflare ranges in WEB_TRUSTED_PROXIES; private_ranges is the safe
+		# default for a direct or local deployment.
+		trusted_proxies static {$WEB_TRUSTED_PROXIES}
+	}
+}
+
+# WEB_DOMAIN is a public name in production, which turns on automatic HTTPS,
+# and :80 locally, which turns it off.
+{$WEB_DOMAIN} {
+	encode zstd gzip
+
+	header {
+		# Ignored over plain HTTP, so this stays harmless with WEB_DOMAIN=:80.
+		Strict-Transport-Security "max-age=31536000"
+		X-Content-Type-Options "nosniff"
+		Referrer-Policy "no-referrer"
+		# Only frame-ancestors: it stops the log panel being framed for a
+		# clickjacking attack without restricting anything else. A full policy
+		# would need 'unsafe-inline' anyway, since Astro bootstraps its React
+		# islands from an inline script and Tailwind ships an inline style.
+		Content-Security-Policy "frame-ancestors 'none'"
+		-Server
+	}
+
+	# The log panel exposes player IP addresses, account names and admin
+	# commands. It is the only part of the site that is not public.
+	@operator path /logs /logs/* /api/logs /api/logs/*
+	basic_auth @operator {
+		{$WEB_LOGS_USER} {$WEB_LOGS_PASSWORD_HASH}
+	}
+
+	reverse_proxy web:4321
+
+	log {
+		output stdout
+		format console
+	}
+}
