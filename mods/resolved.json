@@ -646,6 +646,13 @@
       "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3749026793"
     },
     {
+      "id": "3077900375",
+      "mods": [
+        "ChuckleberryFinnAlertSystem"
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3077900375"
+    },
+    {
       "id": "3508537032",
       "mods": [
         "NeatUI_Framework"
@@ -774,11 +781,25 @@
       "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3490188370"
     },
     {
+      "id": "2503622437",
+      "mods": [
+        "SkillRecoveryJournal"
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2503622437"
+    },
+    {
       "id": "3470659758",
       "mods": [
         "TheShortcut"
       ],
       "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3470659758"
+    },
+    {
+      "id": "2896041179",
+      "mods": [
+        "errorMagnifier"
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2896041179"
     }
   ],
   "mods": [
@@ -892,6 +913,7 @@
     "93mustangSSP",
     "93townCar",
     "CVI",
+    "ChuckleberryFinnAlertSystem",
     "NeatUI_Framework",
     "CleanUI",
     "CompanionDogs",
@@ -913,7 +935,9 @@
     "Neat_Crafting",
     "Project_Cook",
     "Project_Cook_Pixel_Icon_Pack",
-    "TheShortcut"
+    "SkillRecoveryJournal",
+    "TheShortcut",
+    "errorMagnifier"
   ],
   "schema_version": 1,
   "workshop_items": [
@@ -1006,6 +1030,7 @@
     "3001592312",
     "2932547723",
     "3749026793",
+    "3077900375",
     "3508537032",
     "3437629766",
     "3740052292",
@@ -1024,6 +1049,8 @@
     "3451167732",
     "3502080466",
     "3490188370",
-    "3470659758"
+    "2503622437",
+    "3470659758",
+    "2896041179"
   ]
 }

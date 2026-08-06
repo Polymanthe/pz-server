@@ -71,6 +71,19 @@
       ],
       "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2489148104"
     },
+    "2503622437": {
+      "installed": true,
+      "mods": [
+        {
+          "build42_metadata": false,
+          "id": "SkillRecoveryJournal",
+          "metadata_path": "mods/Skill Recovery Journal/mod.info",
+          "name": "Skill Recovery Journal",
+          "requires": []
+        }
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2503622437"
+    },
     "2516123638": {
       "installed": true,
       "mods": [
@@ -415,6 +428,21 @@
       ],
       "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2886833398"
     },
+    "2896041179": {
+      "installed": true,
+      "mods": [
+        {
+          "build42_metadata": true,
+          "id": "errorMagnifier",
+          "metadata_path": "mods/errorMagnifier/42.15/mod.info",
+          "name": "errorMagnifier",
+          "requires": [
+            "ChuckleberryFinnAlertSystem"
+          ]
+        }
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2896041179"
+    },
     "2900580391": {
       "installed": true,
       "mods": [
@@ -524,7 +552,7 @@
           "build42_metadata": true,
           "id": "90pierceArrow",
           "metadata_path": "mods/90pierceArrow/42.13/mod.info",
-          "name": "'90 Pierce Arrow Pumper",
+          "name": "'90 Pierce Arrow Pumper and Ladder Trucks",
           "requires": [
             "damnlib"
           ]
@@ -711,6 +739,19 @@
         }
       ],
       "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3073430075"
+    },
+    "3077900375": {
+      "installed": true,
+      "mods": [
+        {
+          "build42_metadata": true,
+          "id": "ChuckleberryFinnAlertSystem",
+          "metadata_path": "mods/chuckleberryModdingAlertSystem/42.0/mod.info",
+          "name": "Mod Update and Alert System",
+          "requires": []
+        }
+      ],
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3077900375"
     },
     "3088951320": {
       "installed": true,
@@ -983,7 +1024,7 @@
         {
           "build42_metadata": true,
           "id": "GanydeBielovzki's Frockin Splendor!",
-          "metadata_path": "mods/Frockin Splendor!/42.15/mod.info",
+          "metadata_path": "mods/Frockin Splendor!/LEGACY/42.13/mod.info",
           "name": "Frockin Splendor!",
           "requires": []
         }
@@ -1110,7 +1151,7 @@
         {
           "build42_metadata": true,
           "id": "GanydeBielovzki's Frockin Splendor! Vol.2",
-          "metadata_path": "mods/Frockin Splendor! Vol.2/42.15/mod.info",
+          "metadata_path": "mods/Frockin Splendor! Vol.2/LEGACY/42.13/mod.info",
           "name": "Frockin Splendor! Vol.2",
           "requires": []
         }
@@ -1198,7 +1239,7 @@
         {
           "build42_metadata": true,
           "id": "GanydeBielovzki's Frockin Splendor! Vol.3",
-          "metadata_path": "mods/Frockin Splendor! Vol.3/42.15/mod.info",
+          "metadata_path": "mods/Frockin Splendor! Vol.3/LEGACY/42.13/mod.info",
           "name": "Frockin Splendor! Vol.3",
           "requires": [
             "GanydeBielovzki's Frockin Splendor! Vol.2"
@@ -1273,7 +1314,7 @@
         {
           "build42_metadata": true,
           "id": "GanydeBielovzki's Frockin Shirts n Ties",
-          "metadata_path": "mods/Frockin Shirts n Ties/42.13/mod.info",
+          "metadata_path": "mods/Frockin Shirts n Ties/LEGACY/42.13/mod.info",
           "name": "Frockin Shirts & Ties",
           "requires": [
             "GanydeBielovzki's Frockin Splendor! Vol.2"
@@ -1303,7 +1344,7 @@
         {
           "build42_metadata": true,
           "id": "GanydeBielovzki's Frockin Splendor! Vol.4",
-          "metadata_path": "mods/Frockin Splendor! Vol.4/42.15/mod.info",
+          "metadata_path": "mods/Frockin Splendor! Vol.4/LEGACY/42.13/mod.info",
           "name": "Frockin Splendor! Vol.4",
           "requires": [
             "GanydeBielovzki's Frockin Splendor! Vol.2"
@@ -1415,6 +1456,29 @@
           "requires": [
             "NeatUI_Framework"
           ]
+        },
+        {
+          "build42_metadata": true,
+          "id": "Neat_Building_Buildables_SESCompat",
+          "metadata_path": "mods/Neat_Building_Buildables_SESCompat/42.15/mod.info",
+          "name": "Neat Building - Buildables SES Compatible",
+          "requires": []
+        },
+        {
+          "build42_metadata": true,
+          "id": "Neat_Building_Railings",
+          "metadata_path": "mods/Neat_Building_Railings/42.15/mod.info",
+          "name": "Neat Building - Railings Pack",
+          "requires": []
+        },
+        {
+          "build42_metadata": true,
+          "id": "Neat_Building_UIOnly",
+          "metadata_path": "mods/Neat_Building_UIOnly/42.15/mod.info",
+          "name": "Neat Building - UI Only",
+          "requires": [
+            "NeatUI_Framework"
+          ]
         }
       ],
       "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3536052310"
@@ -1425,7 +1489,7 @@
         {
           "build42_metadata": true,
           "id": "GanydeBielovzki's Frockin Wiseguys",
-          "metadata_path": "mods/Frockin Wiseguys/42.15/mod.info",
+          "metadata_path": "mods/Frockin Wiseguys/LEGACY/42.13/mod.info",
           "name": "Frockin Wiseguys!",
           "requires": [
             "GanydeBielovzki's Frockin Splendor! Vol.2"
@@ -1457,9 +1521,7 @@
           "id": "Neat_Building_AddonXP",
           "metadata_path": "mods/NeatBuilding_XP/42.15/mod.info",
           "name": "Neat Building \u2013 XP & Mod Display",
-          "requires": [
-            "Neat_Building"
-          ]
+          "requires": []
         },
         {
           "build42_metadata": true,
@@ -1593,7 +1655,7 @@
         {
           "build42_metadata": true,
           "id": "GanydeBielovzki's Frockin Splendor! Vol.5",
-          "metadata_path": "mods/Frockin Splendor! Vol.5/42.15/mod.info",
+          "metadata_path": "mods/Frockin Splendor! Vol.5/LEGACY/42.13/mod.info",
           "name": "Frockin Splendor! Vol.5",
           "requires": [
             "GanydeBielovzki's Frockin Splendor! Vol.2"
@@ -1713,7 +1775,7 @@
         {
           "build42_metadata": true,
           "id": "GanydeBielovzki's Frockin Stompers!",
-          "metadata_path": "mods/Frockin Stompers!/42.15/mod.info",
+          "metadata_path": "mods/Frockin Stompers!/42/mod.info",
           "name": "Frockin Stompers!",
           "requires": [
             "GanydeBielovzki's Frockin Splendor! Vol.2"
