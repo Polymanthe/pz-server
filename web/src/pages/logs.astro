@@ -1,0 +1,41 @@
+---
+import LogViewer from "../components/LogViewer";
+import { container } from "../composition";
+import Layout from "../layouts/Layout.astro";
+import { toLogFilePayload, type LogFilePayload } from "../shared/LogPayload";
+
+// Rendered on demand, and reachable only through the reverse proxy, which
+// requires basic authentication on /logs and /api/logs.
+export const prerender = false;
+
+let files: LogFilePayload[] = [];
+let problem: string | null = null;
+try {
+  files = (await container().listLogFiles()).map(toLogFilePayload);
+} catch (error) {
+  console.error("Failed to list the server logs", error);
+  problem = `Les journaux n'ont pas pu être listés : ${
+    error instanceof Error ? error.message : String(error)
+  }`;
+}
+---
+
+<Layout title="Journaux du serveur">
+  <h1 class="text-2xl font-semibold tracking-tight">Journaux du serveur</h1>
+  <p class="text-ink-muted mt-2 text-sm">
+    Ces journaux contiennent les adresses IP des joueurs, leurs noms de compte et les commandes
+    d'administration. Ne les partagez pas.
+  </p>
+
+  <div class="mt-6">
+    {
+      problem ? (
+        <p class="border-offline/40 bg-offline/10 text-offline rounded-md border p-3 text-sm">
+          {problem}
+        </p>
+      ) : (
+        <LogViewer client:load files={files} />
+      )
+    }
+  </div>
+</Layout>

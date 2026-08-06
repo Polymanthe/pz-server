@@ -1,0 +1,57 @@
+---
+import "../styles/global.css";
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description } = Astro.props;
+const navigation = [
+  { href: "/", label: "Accueil" },
+  { href: "/mods", label: "Mods" },
+  { href: "/logs", label: "Logs" },
+];
+const current = Astro.url.pathname.replace(/\/$/, "") || "/";
+---
+
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    {description && <meta name="description" content={description} />}
+    <title>{title}</title>
+  </head>
+  <body class="bg-surface text-ink min-h-screen antialiased">
+    <header class="border-border-subtle border-b">
+      <nav
+        class="mx-auto flex max-w-5xl flex-wrap items-center gap-x-6 gap-y-2 px-4 py-4"
+      >
+        <a href="/" class="font-semibold tracking-tight">Serveur Project Zomboid</a>
+        <ul class="flex gap-4 text-sm">
+          {
+            navigation.map((item) => (
+              <li>
+                <a
+                  href={item.href}
+                  aria-current={current === item.href ? "page" : undefined}
+                  class:list={[
+                    "hover:text-ink transition-colors",
+                    current === item.href ? "text-ink underline" : "text-ink-muted",
+                  ]}
+                >
+                  {item.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+    </header>
+    <main class="mx-auto max-w-5xl px-4 py-8">
+      <slot />
+    </main>
+  </body>
+</html>

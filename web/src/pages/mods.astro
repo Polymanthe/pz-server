@@ -1,0 +1,43 @@
+---
+import ModGrid from "../components/ModGrid";
+import { container } from "../composition";
+import Layout from "../layouts/Layout.astro";
+import { toModPayload, type ModPayload } from "../shared/ModPayload";
+
+// Rendered on demand: the list reflects the pack the server currently loads.
+export const prerender = false;
+
+let mods: ModPayload[] = [];
+let problem: string | null = null;
+try {
+  mods = (await container().listActiveMods()).map(toModPayload);
+} catch (error) {
+  // Public page: the detail stays in the container logs.
+  console.error("Failed to list the active mods", error);
+  problem = "La liste des mods n'a pas pu être lue. Le détail figure dans les logs du service.";
+}
+---
+
+<Layout title="Mods du serveur" description="Les mods chargés par le serveur Project Zomboid.">
+  <h1 class="text-2xl font-semibold tracking-tight">Mods du serveur</h1>
+  <p class="text-ink-muted mt-2 text-sm">
+    Cette liste est lue directement dans la configuration active du serveur. Votre client
+    télécharge ces mods automatiquement à la première connexion : rien à installer à la main.
+  </p>
+
+  <div class="mt-6">
+    {
+      problem ? (
+        <p class="border-offline/40 bg-offline/10 text-offline rounded-md border p-3 text-sm">
+          {problem}
+        </p>
+      ) : mods.length === 0 ? (
+        <p class="text-ink-muted">
+          Le serveur ne déclare aucun mod, ou sa configuration n'a pas encore été écrite.
+        </p>
+      ) : (
+        <ModGrid client:load mods={mods} />
+      )
+    }
+  </div>
+</Layout>

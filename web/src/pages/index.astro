@@ -1,0 +1,105 @@
+---
+import CopyButton from "../components/CopyButton";
+import StatusBadge from "../components/StatusBadge";
+import { container } from "../composition";
+import Layout from "../layouts/Layout.astro";
+import { degradedStatusPayload, toStatusPayload, type StatusPayload } from "../shared/StatusPayload";
+
+// Rendered on demand: everything on this page comes from the deployment
+// environment and the live server, none of it is known at build time.
+export const prerender = false;
+
+// A broken deployment must still get a readable page. Every failure below
+// degrades into a problem shown in the status card.
+let status: StatusPayload;
+let connectionLink: string | null = null;
+try {
+  const application = container();
+  status = toStatusPayload(await application.getServerStatus());
+  connectionLink = application.connectionLink();
+} catch (error) {
+  // Public page: the detail stays in the container logs.
+  console.error("Failed to build the home page state", error);
+  status = degradedStatusPayload(
+    "L'état du serveur n'a pas pu être déterminé. Le détail figure dans les logs du service.",
+  );
+}
+
+const address = status.address === null ? null : `${status.address}:${status.port}`;
+---
+
+<Layout
+  title="Serveur Project Zomboid"
+  description="État du serveur, lien de connexion et mods installés."
+>
+  <h1 class="text-2xl font-semibold tracking-tight">Rejoindre le serveur</h1>
+
+  <div class="mt-6 space-y-6">
+    <StatusBadge client:load initial={status} />
+
+    <section class="border-border-subtle bg-surface-raised rounded-lg border p-5">
+      <h2 class="text-lg font-semibold">Se connecter</h2>
+
+      {
+        connectionLink ? (
+          <>
+            <p class="text-ink-muted mt-2 text-sm">
+              Ce lien ouvre Steam et lance Project Zomboid directement sur le serveur. Les mods
+              manquants se téléchargent tout seuls à la première connexion.
+            </p>
+            <div class="mt-4 flex flex-wrap items-center gap-3">
+              <a
+                href={connectionLink}
+                class="bg-online text-surface rounded-md px-4 py-2 font-medium transition-opacity hover:opacity-90"
+              >
+                Rejoindre via Steam
+              </a>
+              <CopyButton client:visible value={connectionLink} label="Copier le lien" />
+            </div>
+          </>
+        ) : (
+          <p class="text-ink-muted mt-2 text-sm">
+            Le lien de connexion n'est pas disponible : l'adresse publique du serveur n'est pas
+            configurée. Le détail figure dans l'encadré d'état ci-dessus.
+          </p>
+        )
+      }
+
+      {
+        address && (
+          <div class="border-border-subtle mt-5 border-t pt-4">
+            <p class="text-ink-muted text-sm">
+              Si le lien ne fonctionne pas, ajoutez le serveur à la main dans Project Zomboid, menu
+              <span class="text-ink"> Rejoindre &gt; Ajouter un serveur</span> :
+            </p>
+            <div class="mt-3 flex flex-wrap items-center gap-3">
+              <code class="border-border-subtle bg-surface rounded-md border px-3 py-1 font-mono">
+                {address}
+              </code>
+              <CopyButton client:visible value={address} label="Copier l'adresse" />
+            </div>
+          </div>
+        )
+      }
+    </section>
+
+    <section class="border-border-subtle bg-surface-raised rounded-lg border p-5">
+      <h2 class="text-lg font-semibold">« Un mot de passe est requis »</h2>
+      <p class="text-ink-muted mt-2 text-sm">
+        Le serveur n'a pas de mot de passe : le champ à laisser vide est celui du
+        <span class="text-ink"> serveur</span>. Celui que Project Zomboid vous demande ensuite est
+        le mot de passe de <span class="text-ink">votre compte joueur</span> sur ce serveur. Vous
+        le choisissez vous-même à la première connexion, et il vous sera redemandé à chaque fois :
+        notez-le.
+      </p>
+    </section>
+
+    <section class="border-border-subtle bg-surface-raised rounded-lg border p-5">
+      <h2 class="text-lg font-semibold">Mods</h2>
+      <p class="text-ink-muted mt-2 text-sm">
+        Le serveur charge un ensemble de mods que votre client télécharge automatiquement.
+        <a href="/mods" class="text-ink underline">Voir la liste</a>.
+      </p>
+    </section>
+  </div>
+</Layout>
