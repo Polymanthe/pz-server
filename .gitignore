@@ -5,3 +5,6 @@
 .task/
 __pycache__/
 backups/
+node_modules/
+web/dist/
+web/.astro/
