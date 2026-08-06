@@ -204,6 +204,69 @@ tasks:
         vars:
           COMMAND: players
 
+  backup:build:
+    desc: Build the world archiving image
+    preconditions:
+      - sh: test -f .env
+        msg: Run task init or provide .env first
+    cmds:
+      - docker compose --profile backup build backup
+
+  backup:export:
+    desc: Stop the server, archive the world, and start it again
+    vars:
+      WAIT_TIMEOUT: '{{default "1200" .WAIT_TIMEOUT}}'
+    preconditions:
+      - sh: test -f .env
+        msg: Run task init or provide .env first
+      - sh: test -f mods/resolved.env
+        msg: Run task mods:sync first
+    cmds:
+      # Create the archive directory as the invoking user: Docker would create
+      # the missing bind mount target as root.
+      - mkdir -p "${BACKUP_DIR:-./backups}"
+      # Project Zomboid holds the world in memory and only flushes it on a
+      # graceful shutdown, so a hot copy has no consistency guarantee.
+      - task: stop
+      - docker compose --profile backup run --rm --build backup export
+      - task: up
+        vars:
+          WAIT_TIMEOUT: '{{.WAIT_TIMEOUT}}'
+
+  backup:list:
+    desc: List the archives held by the configured backup store
+    preconditions:
+      - sh: test -f .env
+        msg: Run task init or provide .env first
+      - sh: test -f mods/resolved.env
+        msg: Run task mods:sync first
+    cmds:
+      - mkdir -p "${BACKUP_DIR:-./backups}"
+      - docker compose --profile backup run --rm --build backup list
+
+  backup:import:
+    desc: "Restore an archive into this host's volume (requires CONFIRM=import)"
+    vars:
+      ARCHIVE: '{{default "" .ARCHIVE}}'
+      CONFIRM: '{{default "" .CONFIRM}}'
+      REPLACE: '{{default "" .REPLACE}}'
+    preconditions:
+      - sh: test -f .env
+        msg: Run task init or provide .env first
+      - sh: test -f mods/resolved.env
+        msg: Run task mods:sync first
+      - sh: test -n "{{.ARCHIVE}}"
+        msg: "Provide an archive name from task backup:list, for example: task backup:import ARCHIVE=pzserver-20260806T190000Z.tar.gz CONFIRM=import"
+      - sh: test "{{.CONFIRM}}" = import
+        msg: "This writes a world into the server-data volume. Run task backup:import ARCHIVE=<name> CONFIRM=import to continue"
+      # A live server holds the world in memory and would write it back over the
+      # restored files on shutdown.
+      - sh: test -z "$(docker compose ps --status running --quiet projectzomboid)"
+        msg: "The server is running. Run task stop first"
+    cmds:
+      - mkdir -p "${BACKUP_DIR:-./backups}"
+      - docker compose --profile backup run --rm --build -e REPLACE="{{.REPLACE}}" backup import "{{.ARCHIVE}}"
+
   web:build:
     desc: Build the companion site image
     preconditions:

@@ -100,6 +100,31 @@ services:
         max-size: "${LOG_MAX_SIZE:-10m}"
         max-file: "${LOG_MAX_FILES:-5}"
 
+  # World archiving. One-shot by nature: it lives behind its own profile so that
+  # task up never starts it, and is only reached through docker compose run. It
+  # is the only service allowed to write into server-data besides the game.
+  backup:
+    build:
+      context: ./backup
+    image: "${PZ_BACKUP_IMAGE:-pz-server-backup:local}"
+    profiles: ["backup"]
+    # The active mod pack, recorded in the archive manifest so a restore can
+    # warn when the world no longer matches the mods it was saved with.
+    env_file:
+      - ./mods/resolved.env
+    environment:
+      PUID: "${PUID:-1000}"
+      PGID: "${PGID:-1000}"
+      SERVER_NAME: "${SERVER_NAME:-pzserver}"
+      BACKUP_STORE: "${BACKUP_STORE:-local}"
+    volumes:
+      - server-data:/project-zomboid-config
+      # The one bind mount of this deployment: an archive is worthless if it
+      # cannot leave the Docker engine that produced it.
+      - "${BACKUP_DIR:-./backups}:/backups"
+    security_opt:
+      - no-new-privileges:true
+
   caddy:
     image: "${CADDY_IMAGE:-docker.io/library/caddy:2.10-alpine}"
     profiles: ["web"]

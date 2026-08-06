@@ -4,7 +4,7 @@
 
 This repository defines one portable Project Zomboid dedicated server deployment. The same Compose file must run on Linux amd64 hosts and Apple Silicon through Docker emulation.
 
-Each host owns an independent world. Do not add save synchronization, shared storage, or automatic migration between hosts unless explicitly requested.
+Each host owns an independent world. Operator-driven export and import through `task backup:*` is the one supported way to move it. Do not add save synchronization, shared storage, scheduled backups, or automatic migration between hosts unless explicitly requested.
 
 ## Sources Of Truth
 
@@ -17,6 +17,7 @@ Each host owns an independent world. Do not add save synchronization, shared sto
 - `mods/catalog.lock.json` inventories Workshop IDs, mod IDs, and dependencies discovered from Steam.
 - `mods/resolved.env` is generated from the selection and is the active server mod configuration.
 - `web/` is the companion site. `caddy/Caddyfile` is its reverse proxy configuration.
+- `backup/` is the world archiving image. `backups/` is the untracked archive directory it writes to.
 
 Do not introduce host-specific Compose files when an environment variable is sufficient.
 
@@ -36,6 +37,9 @@ Do not introduce host-specific Compose files when an environment variable is suf
 - Treat `server-data` as valuable once a host is used for real players, even though worlds are not moved between hosts.
 - Never run `docker compose down --volumes`, remove a named volume, or reset a world without explicit confirmation from the user.
 - Treat a mod removal as potentially world-breaking. Confirm it explicitly and make a backup before applying it to a non-development world.
+- Archiving runs in the `backup` service, never on the host: the volume, the tooling, and a future bucket client belong in one container, and a host only needs Docker to recover a world. Keep the service behind its `backup` profile so `task up` never starts it.
+- Where an archive is kept is `backup/stores/` business alone. A new backend is a sibling of `local.sh` implementing `store_put`, `store_fetch`, and `store_list`, plus its client in `backup/Dockerfile`. `entrypoint.sh` must not learn about it.
+- An archive must never carry `.env`. It is meant to travel; the passwords are not.
 
 ## Operations
 
@@ -61,6 +65,9 @@ Prefer the corresponding Task command over invoking multi-step Docker commands m
 - `task web:test`
 - `task web:logs`
 - `task web:password`
+- `task backup:export`
+- `task backup:list`
+- `task backup:import ARCHIVE=<name> CONFIRM=import`
 
 Diagnose a client kick with `task mods:diff` before touching the mod pack. The Project Zomboid message naming a mismatched file is unreliable; a build difference between the server and a client reports as an unrelated vanilla file.
 

@@ -75,6 +75,9 @@ task status
 | `task mods:diff` | Compare le pack et la version du jeu du serveur avec ceux de cette machine |
 | `task mods:refresh WORKSHOP_ID=<id>` | Purge et retélécharge un Workshop item côté serveur |
 | `task rcon COMMAND=players` | Exécute une commande RCON sans exposer RCON sur l'hôte |
+| `task backup:export` | Arrête le serveur, archive le monde et le redémarre |
+| `task backup:list` | Liste les archives disponibles |
+| `task backup:import ARCHIVE=<nom> CONFIRM=import` | Restaure une archive dans le volume de cet hôte |
 | `task web:build` | Construit l'image du site compagnon |
 | `task web:test` | Vérifie les types, le style et les tests du site compagnon |
 | `task web:logs` | Suit les logs du site et du reverse proxy |
@@ -235,6 +238,37 @@ Steam Workshop ne permet pas de verrouiller facilement une version précise d'un
 | `server-data` | Configuration, joueurs, base de données et sauvegarde du monde |
 
 Les volumes sont locaux au Docker Engine. Des déploiements distincts peuvent utiliser les mêmes noms de volumes et les mêmes ports sans collision. Aucun nom de projet Compose ou namespace propre à la machine n'est nécessaire.
+
+## Sauvegarde Et Migration
+
+`task backup:export` produit une archive autoportante du monde dans `backups/`. Elle contient la sauvegarde `Saves/Multiplayer/<nom>`, la base des joueurs `db/<nom>.db`, la configuration de partie `Server/` et les backups internes que Project Zomboid génère au démarrage. Le pack de mods actif est enregistré dans un manifeste, ce qui permet à une restauration d'avertir si le monde ne correspond plus aux mods résolus.
+
+L'export arrête le serveur avant d'archiver, puis le redémarre : Project Zomboid garde le monde en mémoire et ne l'écrit intégralement que lors d'un arrêt propre.
+
+```bash
+task backup:export
+task backup:list
+```
+
+Ce qui **n'est pas** dans l'archive : `.env`, qui contient les mots de passe et n'a rien à faire dans un fichier destiné à circuler ; le volume `server-files`, que Steam retélécharge ; les logs.
+
+### Déplacer Le Serveur
+
+1. Sur l'ancienne machine : `task backup:export`.
+2. Copier l'archive **et** `.env` vers la nouvelle machine, par un canal sûr pour `.env`.
+3. Sur la nouvelle machine : `git clone` du dépôt, y placer `.env` et l'archive dans `backups/`, puis `task doctor`.
+4. Restaurer et démarrer :
+
+```bash
+task backup:import ARCHIVE=pzserver-20260806T194958Z.tar.gz CONFIRM=import
+task up
+```
+
+`SERVER_NAME` doit être identique de part et d'autre : le monde et la base sont nommés d'après lui, et l'import refuse une archive qui ne correspond pas. Si un monde existe déjà dans le volume, l'import s'arrête ; ajouter `REPLACE=world` pour l'écraser sciemment.
+
+Le premier démarrage est long : Steam réinstalle le serveur et tout le pack Workshop dans un volume `server-files` vide, ce que le `start_period` de quinze minutes du healthcheck prend en compte. Avec le site compagnon, Caddy redemande ses certificats à Let's Encrypt pour le nouveau `WEB_DOMAIN`.
+
+Le répertoire versionné `backup/` contient l'image d'archivage ; `backups/` est le répertoire de données, ignoré par Git. `BACKUP_STORE` choisit l'implémentation de stockage : seule `local` existe aujourd'hui, qui écrit dans `BACKUP_DIR` sur cet hôte.
 
 ## Apple Silicon
 
