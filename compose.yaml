@@ -41,7 +41,12 @@ services:
       interval: 30s
       timeout: 10s
       retries: 5
-      start_period: 1m
+      # A cold start (empty volumes) redownloads the server and the whole mod
+      # pack from Steam before RCON can answer, which takes far longer than a
+      # minute. A healthy probe during the start period marks the container up
+      # right away, so this costs a warm start nothing. Keep the total budget
+      # (start_period + retries * interval) under the Taskfile WAIT_TIMEOUT.
+      start_period: 15m
     deploy:
       resources:
         limits:
