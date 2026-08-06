@@ -16,6 +16,7 @@ Each host owns an independent world. Do not add save synchronization, shared sto
 - `mods/enabled.toml` selects the active Workshop pack.
 - `mods/catalog.lock.json` inventories Workshop IDs, mod IDs, and dependencies discovered from Steam.
 - `mods/resolved.env` is generated from the selection and is the active server mod configuration.
+- `web/` is the companion site. `caddy/Caddyfile` is its reverse proxy configuration.
 
 Do not introduce host-specific Compose files when an environment variable is sufficient.
 
@@ -56,10 +57,26 @@ Prefer the corresponding Task command over invoking multi-step Docker commands m
 - `task mods:apply CONFIRM=mods`
 - `task mods:diff`
 - `task mods:refresh WORKSHOP_ID=<id>`
+- `task web:build`
+- `task web:test`
+- `task web:logs`
+- `task web:password`
 
 Diagnose a client kick with `task mods:diff` before touching the mod pack. The Project Zomboid message naming a mismatched file is unreliable; a build difference between the server and a client reports as an unrelated vanilla file.
 
 Stopping the container must allow Project Zomboid to save and quit gracefully. Preserve an adequate `stop_grace_period` and verify shutdown behavior when changing the image or entrypoint.
+
+## Companion Site
+
+The site in `web/` lives behind the Compose profile `web`. It is optional: `task up` must keep working with the profile disabled.
+
+- The `web` service is unprivileged. It mounts `server-data` and `server-files` read-only, reaches the game server only over RCON on the Compose network, and must never be given the Docker socket. A service exposed to the internet does not get root on the host.
+- The site describes what the server actually loads, read from `Server/<name>.ini` and the Workshop content, never from the repository files. Those two can legitimately disagree until `task mods:apply` runs.
+- Configuration must never throw. A missing environment variable is collected as a problem and displayed on the page; the site keeps serving every route. An operator repairing a broken `.env` needs a readable page, not a stack trace.
+- Steam enrichment is a bonus. Any failure falls back to the local data silently, and the mod name always comes from `mod.info`: a Workshop item can bundle several mods, so its title names the pack rather than any one mod.
+- `src/domain/` contains no I/O and must not import `node:*`, a framework, or an adapter. An ESLint rule enforces this; do not relax it. Add an adapter behind a port instead.
+- `versionScore` in `web/src/adapters/catalog/ModInfo.ts` duplicates `version_score` in `scripts/discover_mods.py` on purpose, the two languages having no shared code. Change them together or the site will describe a different mod variant than the one the server loads.
+- Run `task web:test` before considering a change to `web/` complete.
 
 ## Change Validation
 

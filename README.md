@@ -13,13 +13,14 @@ Chaque déploiement possède ses propres volumes et son propre monde. Le projet 
 - Deux volumes Docker nommés pour les binaires et les données du monde.
 - Une configuration `.env` locale par déploiement.
 - Une limite de mémoire Docker distincte de la mémoire maximale de la JVM.
+- Un site compagnon facultatif et son reverse proxy, derrière le profil Compose `web`.
 
 Le serveur officiel Linux est un workload amd64. `platform: linux/amd64` reste donc défini, y compris sur un hôte ARM.
 
 ## Prérequis
 
 - Docker Engine avec Docker Compose v2 ou Docker Desktop.
-- `mise` pour installer la version de Task épinglée par le projet.
+- `mise` pour installer les versions de Task et de bun épinglées par le projet.
 - OpenSSL pour générer les mots de passe initiaux.
 - Au moins 10 Go de RAM Docker disponibles pour le pack complet actuel.
 - Au moins 15 Go d'espace disque disponible pour le serveur et les mods.
@@ -74,6 +75,10 @@ task status
 | `task mods:diff` | Compare le pack et la version du jeu du serveur avec ceux de cette machine |
 | `task mods:refresh WORKSHOP_ID=<id>` | Purge et retélécharge un Workshop item côté serveur |
 | `task rcon COMMAND=players` | Exécute une commande RCON sans exposer RCON sur l'hôte |
+| `task web:build` | Construit l'image du site compagnon |
+| `task web:test` | Vérifie les types, le style et les tests du site compagnon |
+| `task web:logs` | Suit les logs du site et du reverse proxy |
+| `task web:password` | Génère le hash du mot de passe du panneau de logs |
 | `task stop` | Sauvegarde et arrête proprement le serveur |
 | `task down` | Retire le conteneur sans supprimer les volumes |
 | `task update` | Met à jour explicitement les fichiers du serveur |
@@ -278,3 +283,109 @@ PZ_CONNECT_LINK=steam://run/108600//%2Bconnect%20pz.example.net%3A16261/
 ```
 
 Il ouvre Steam, lance Project Zomboid et transmet `+connect`. Le lien ne contient jamais le mot de passe serveur : le jeu le demandera si nécessaire. Cette ligne est adaptée à une future intégration Discord qui lit les logs ou exécute `task connection`.
+
+### « Un Mot De Passe Est Requis »
+
+Ce message ne concerne pas le mot de passe du serveur, qui est vide. Project Zomboid demande le mot de passe du **compte joueur**, propre à chaque personne et à chaque serveur. Le joueur le choisit lui-même à sa première connexion, et il lui sera redemandé ensuite. Le site compagnon affiche cette explication sur sa page d'accueil.
+
+## Site Compagnon
+
+Un site web facultatif accompagne le serveur : état en temps réel, lien de connexion, galerie des mods chargés, et un panneau de logs réservé à l'opérateur.
+
+### Mise En Route
+
+Activer le profil Compose et renseigner le domaine dans `.env` :
+
+```dotenv
+COMPOSE_PROFILES=web
+WEB_DOMAIN=pz.example.net
+```
+
+Générer le mot de passe du panneau de logs :
+
+```bash
+task web:password
+```
+
+Reporter le hash dans `.env` **en doublant chaque `$`**, sinon Docker Compose l'interprète comme une variable et le corrompt :
+
+```dotenv
+WEB_LOGS_USER=admin
+WEB_LOGS_PASSWORD_HASH=$$2a$$14$$votre_hash_ici
+```
+
+Puis démarrer normalement :
+
+```bash
+task up
+```
+
+`task up` refuse de démarrer si le profil `web` est actif sans mot de passe : Caddy échouerait de toute façon, plutôt que de servir les logs sans authentification.
+
+### Ce Que Voit Un Joueur
+
+| Page | Contenu | Accès |
+|---|---|---|
+| `/` | État du serveur, joueurs connectés, version du jeu, lien Steam | public |
+| `/mods` | Les mods réellement chargés, avec vignettes, recherche et filtre | public |
+| `/logs` | Les journaux du serveur | authentifié |
+
+Les pseudos des joueurs connectés sont affichés publiquement sur la page d'accueil. C'est un choix assumé pour un serveur entre amis : n'importe qui peut donc voir qui joue et quand. Pour les réserver à la partie authentifiée, il suffit de retirer `players` de `toStatusPayload` dans `web/src/shared/StatusPayload.ts`.
+
+L'état distingue quatre situations. **En ligne** signifie que RCON répond. **Démarrage en cours** signifie que RCON est muet mais que le serveur a écrit dans ses journaux il y a moins de deux minutes. **Hors ligne** signifie que RCON est muet et que les journaux sont figés. **État indéterminé** signifie que le site n'arrive pas à interroger le serveur, ce qui désigne un problème de configuration et non un serveur arrêté.
+
+### TLS Et Cloudflare
+
+Caddy obtient un certificat Let's Encrypt automatiquement dès que `WEB_DOMAIN` est un nom public. Les ports `80/tcp` et `443/tcp` doivent être ouverts sur l'hôte et le routeur. Côté Cloudflare, choisir le mode SSL **Full (strict)**.
+
+Pour ne pas ouvrir le port 80, générer un *Origin Certificate* Cloudflare et remplacer la ligne `reverse_proxy` du bloc de site par :
+
+```caddyfile
+tls /certs/origin.pem /certs/origin.key
+reverse_proxy web:4321
+```
+
+en montant les deux fichiers dans le service `caddy`.
+
+Cloudflare réécrit l'adresse source des requêtes. Pour que les logs Caddy portent la vraie IP du visiteur, renseigner les plages Cloudflare courantes :
+
+```dotenv
+WEB_TRUSTED_PROXIES=173.245.48.0/20 103.21.244.0/22 ...
+```
+
+Le `Caddyfile` ne contient volontairement aucune option `email` : Caddy refuse d'analyser une valeur vide, et une adresse factice serait pire que rien. Ajouter `email vous@example.net` à la main dans le bloc global pour recevoir les avis du certificateur.
+
+### Sécurité
+
+Le service `web` ne dispose d'aucun privilège. Il monte `server-data` et `server-files` en **lecture seule**, ne joint le serveur de jeu que par RCON sur le réseau interne, et n'a **aucun accès au socket Docker**. Il ne peut donc ni modifier le monde, ni la configuration, ni le pack de mods.
+
+Le panneau de logs expose les adresses IP des joueurs, leurs noms de compte et les commandes d'administration. Il reste derrière l'authentification du reverse proxy, et le site le rappelle en tête de page.
+
+### Sources Des Données
+
+Le site ne lit rien du dépôt : il décrit ce que le serveur charge réellement.
+
+| Information | Origine |
+|---|---|
+| Liste des mods | `Server/<nom>.ini`, clés `Mods=` et `WorkshopItems=` |
+| Nom, auteur, catégorie, vignette | `mod.info` et `preview.png` dans le contenu Workshop du serveur |
+| Joueurs connectés | commande RCON `players` |
+| Version du jeu et activité | `Logs/*_DebugLog-server.txt` |
+| Titres et descriptions manquants | API Steam Workshop, avec cache disque de 24 h |
+
+L'appel Steam n'est jamais bloquant : s'il échoue ou expire, la page affiche les données locales. Le nom d'un mod vient toujours de `mod.info` et jamais du titre Steam, car un Workshop item peut contenir plusieurs mods et son titre désigne le lot, pas chaque mod. Mettre `PZ_STEAM_ENRICHMENT=false` désactive complètement l'appel.
+
+### Développement
+
+Le site vit dans `web/`, en TypeScript, avec Astro et des îlots React. Le paquet est géré par **bun**.
+
+```bash
+cd web
+bun install
+bun run dev
+bun test test/
+```
+
+L'architecture est hexagonale : `src/domain/` ne contient aucune entrée-sortie et ignore Astro, React et le système de fichiers ; `src/adapters/` implémente les ports ; `src/composition.ts` est le seul endroit qui lit l'environnement et câble les implémentations. Une règle ESLint interdit mécaniquement à `src/domain/` d'importer `node:*`, un framework ou un adaptateur — sans ce garde-fou, la séparation se dégrade silencieusement.
+
+Le site ne plante jamais au démarrage à cause d'une variable manquante. La configuration collecte ses problèmes au lieu de les lever, et chacun s'affiche dans l'encadré d'état de la page d'accueil.
